@@ -1,5 +1,7 @@
+import { HttpStatus } from "@http";
 import { CadastroUsuario, ICadastroUsuarioRequest } from "@usuario";
 import { NextFunction, Request, Response } from "express";
+import { HttpException } from "src/middleware/errorHandler";
 import { parseType } from "src/parseType";
 
 
@@ -9,7 +11,7 @@ export class CadastrarUsuarioControlador {
 
     async cadastrarUsuario(request: Request, response: Response, next: NextFunction){
         try {
-
+            
             const body = parseType<ICadastroUsuarioRequest>(request.body);
 
             const { usuario } = await this.cadastroUsuario.cadastrarUsuario(body);
@@ -21,9 +23,12 @@ export class CadastrarUsuarioControlador {
 
             next();
         }catch(error){
-            next({
-                
+
+            if (error instanceof Error) next({
+                status: HttpStatus.BAD_REQUEST,
+                message: error.message
             })
-        }
+        
+       }
     }
-}
+}      

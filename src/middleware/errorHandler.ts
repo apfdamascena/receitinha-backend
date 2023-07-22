@@ -1,11 +1,11 @@
 import { NextFunction, Request, Response } from "express";
 
-type HttpExceptionContent = {
+export type HttpExceptionContent = {
   status: number;
   message: string;
 };
 
-class HttpException extends Error {
+export class HttpException extends Error {
   status: number;
   message: string;
 
