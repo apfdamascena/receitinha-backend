@@ -19,7 +19,7 @@
        "experimentalDecorators": true,
        "removeComments": true,
        "allowSyntheticDefaultImports": true,
-       "baseUrl": "./",
+       "baseUrl": ".",
        "paths": {
          "@env": [
            "./src/env/index.ts"
@@ -39,6 +39,9 @@
         ],
         "@controladores": [
          "./src/controladores/index.ts"
+        ],
+        "@database": [
+         "./src/database/index.ts"
         ]
       },
        "typeRoots": [

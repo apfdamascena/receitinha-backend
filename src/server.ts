@@ -1,4 +1,5 @@
 import app from "./app";
+import { DatabaseConnection } from "./database";
 import { env } from "./env";
 
 (async () => {
