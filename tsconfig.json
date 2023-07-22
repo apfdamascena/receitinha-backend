@@ -36,6 +36,9 @@
         ],
         "@http": [
          "./src/http/index.ts"
+        ],
+        "@controladores": [
+         "./src/controladores/index.ts"
         ]
       },
        "typeRoots": [

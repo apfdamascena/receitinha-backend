@@ -11,7 +11,7 @@ export class CadastrarUsuarioControlador {
 
     async cadastrarUsuario(request: Request, response: Response, next: NextFunction){
         try {
-            
+
             const body = parseType<ICadastroUsuarioRequest>(request.body);
 
             const { usuario } = await this.cadastroUsuario.cadastrarUsuario(body);
@@ -31,4 +31,5 @@ export class CadastrarUsuarioControlador {
         
        }
     }
-}      
+}
+
