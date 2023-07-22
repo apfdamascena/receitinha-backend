@@ -1,11 +1,12 @@
-import { NextFunction, Request, Response } from 'express';
-import { HttpException } from './index';
+import { NextFunction, Request, Response } from "express";
+
+import { HttpException } from "./index";
 
 const errorHandler = (
   error: HttpException,
   req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ) => {
   res.locals.status = error.status;
   res.locals.message = error.message;

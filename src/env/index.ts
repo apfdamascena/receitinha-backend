@@ -1,7 +1,7 @@
 import "dotenv/config";
+import { InvalidVariablesError } from "@error";
 import { z } from "zod";
-import { InvalidVariablesError } from "@error"
- 
+
 const variables = z.object({
   NODE_ENV: z.enum(["dev", "prod", "test"]).default("dev"),
   PORT: z.coerce.number().default(3001),

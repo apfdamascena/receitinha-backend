@@ -24,5 +24,4 @@ app.use(notFoundHandler);
 app.use(errorHandler);
 app.use(requestHandler);
 
-
 export default app;

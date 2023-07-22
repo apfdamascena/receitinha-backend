@@ -1,5 +1,3 @@
 import InvalidVariablesError from "./InvalidVariableError";
 
-export {
-    InvalidVariablesError
-}
+export { InvalidVariablesError };

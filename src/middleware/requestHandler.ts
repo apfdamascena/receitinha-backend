@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Request, Response } from "express";
 
 const requestHandler = (_: Request, res: Response) => {
   if (res.locals.body) {
