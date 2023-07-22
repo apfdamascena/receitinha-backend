@@ -16,16 +16,23 @@ export class RepositorioUsuario implements IRepositorioUsuario {
         const user = data as Usuario
         return user
     }
-    async save(usuario: Usuario): Promise<void> {
+    async save(usuario: Usuario): Promise<Usuario> {
+        usuario.created_at = new Date()
+        usuario.updated_at = new Date()
         await this.dataBaseCollection.insertOne(usuario);
+        return usuario
     }
 
-    findUserById(userId: string): Promise<Usuario> {
-        throw new Error("Method not implemented.");
+    async findUserById(userId: string): Promise<Usuario> {
+        const data = (await this.dataBaseCollection.findOne( { id: userId })) as unknown
+        const user = data as Usuario
+        return user
     }
 
-    getConquistas(userId: string): Promise<string[]> {
-        throw new Error("Method not implemented.");
+    async getConquistas(userId: string): Promise<string[]> {
+        const data = (await this.dataBaseCollection.findOne( { id: userId })) as unknown
+        const user = data as Usuario
+        return user.conquistas
     }
     
 }

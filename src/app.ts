@@ -1,13 +1,19 @@
 import "reflect-metadata";
 import cors from "cors";
-import express from "express";
+import express, { Router } from "express";
 import helmet from "helmet";
 import morgan from "morgan";
 
 import { errorHandler, notFoundHandler, requestHandler } from "./middleware";
+import { Routes } from "./routes";
 
 const API_VERSION = "/api/v1";
 const app = express();
+
+const routes = new Routes()
+
+app.post(`${API_VERSION}/cadastrar-usuario`, routes.cadastrarUsuario.bind(routes));
+
 
 app.use(cors());
 app.use(express.json());
