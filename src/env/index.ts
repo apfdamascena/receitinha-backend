@@ -5,6 +5,7 @@ import { InvalidVariablesError } from "@error"
 const variables = z.object({
   NODE_ENV: z.enum(["dev", "prod", "test"]).default("dev"),
   PORT: z.coerce.number().default(3001),
+  IPV4: z.string().default("0.0.0.0"),
 });
 
 const ENV_VARIABLES = variables.safeParse(process.env);

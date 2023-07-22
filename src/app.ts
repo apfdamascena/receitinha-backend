@@ -3,7 +3,6 @@ import cors from "cors";
 import express from "express";
 import helmet from "helmet";
 import morgan from "morgan";
-import "./Infra";
 
 import { errorHandler, notFoundHandler, requestHandler } from "./middleware";
 
@@ -24,5 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(notFoundHandler);
 app.use(errorHandler);
 app.use(requestHandler);
+
+
 
 export default app;
