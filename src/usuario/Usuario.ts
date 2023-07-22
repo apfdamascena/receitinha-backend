@@ -7,7 +7,7 @@ export class Usuario {
   public senha?: string;
   public email: string;
   public conquistas: Array<string>;
-  
+
   public created_at?: Date;
   public updated_at?: Date;
 
