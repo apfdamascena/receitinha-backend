@@ -7,7 +7,6 @@ export class Routes {
     private fachada: Fachada
 
     constructor(){
-
         const cadastroUsuarioControlador = CadastroUsuarioFactory.create()
         this.fachada = new Fachada(cadastroUsuarioControlador)
     }
