@@ -12,12 +12,18 @@ export class CadastrarUsuarioControlador {
 
             const body = parseType<ICadastroUsuarioRequest>(request.body);
 
-            
+            const { usuario } = await this.cadastroUsuario.cadastrarUsuario(body);
 
+            response.locals = {
+                ...response.locals,
+                data: usuario
+            }
 
-
+            next();
         }catch(error){
-
+            next({
+                
+            })
         }
     }
 }

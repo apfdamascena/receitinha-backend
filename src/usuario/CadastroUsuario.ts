@@ -1,14 +1,14 @@
 import { genSaltSync, hashSync } from "bcryptjs";
 import { IRepositorioUsuario } from "./IRepositorioUsuario";
 import { Usuario } from "./Usuario";
-import { ICadastroUsuarioRequest } from "./CadastroUsuarioDTO";
+import { ICadastroUsuarioRequest, ICadastroUsuarioResponse } from "./CadastroUsuarioDTO";
 
 
 export class CadastroUsuario {
 
     constructor(private repositorioUsuario: IRepositorioUsuario){}
 
-    async cadastrarUsuario(input: ICadastroUsuarioRequest){
+    async cadastrarUsuario(input: ICadastroUsuarioRequest): Promise<ICadastroUsuarioResponse> {
         const { email, nome, senha } = input;
         
         const isUsuarioAlreadyExists = await this.repositorioUsuario.findByEmail(email);
@@ -24,7 +24,7 @@ export class CadastroUsuario {
 
         const usuario = await this.repositorioUsuario.save(novoUsuario);
         delete usuario.senha;
-        
-        return usuario;
+
+        return { usuario }
     }
 }

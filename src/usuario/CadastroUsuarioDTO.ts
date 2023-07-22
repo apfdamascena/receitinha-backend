@@ -8,7 +8,7 @@ export interface ICadastroUsuarioRequest {
   email: string;
 }
 
-export interface ICreateUserResponse {
+export interface ICadastroUsuarioResponse {
   usuario: Usuario;
 }
 
