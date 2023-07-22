@@ -30,6 +30,9 @@
          ],
          "@error": [
            "./src/error/index.ts"
+        ],
+        "@usuario": [
+         "./src/usuario/index.ts"
         ]
       },
        "typeRoots": [

@@ -4,7 +4,7 @@ export class Usuario {
   public readonly id: string;
 
   public nome: string;
-  public senha: string;
+  public senha?: string;
   public email: string;
   public conquistas: Array<string>;
   
