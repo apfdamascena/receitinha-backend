@@ -14,6 +14,4 @@ export class Routes {
     async cadastrarUsuario(request: Request, response: Response, next: NextFunction){
         this.fachada.cadastrarUsuario(request, response, next);
     }
-
-    
 }
