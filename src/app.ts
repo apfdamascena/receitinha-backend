@@ -10,15 +10,6 @@ import { Routes } from "./routes";
 
 const app = express();
 
-// (async () => {
-//   try {
-//     const teste = await api.get("/recipe?query=brownie");
-//     console.log(teste);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// })();
-
 app.use(cors());
 app.use(express.json());
 app.use(helmet());
