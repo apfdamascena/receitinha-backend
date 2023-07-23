@@ -38,10 +38,19 @@
          "./src/http/index.ts"
         ],
         "@controladores": [
-         "./src/controladores/index.ts"
+         "src/controladores/index.ts"
         ],
         "@database": [
          "./src/database/index.ts"
+        ],
+        "@service": [
+         "./src/service/index.ts"
+        ],
+        "@receitasExternas": [
+         "./src/receitasExternas/index.ts"
+        ],
+        "@receita": [
+         "./src/receita/index.ts"
         ]
       },
        "typeRoots": [

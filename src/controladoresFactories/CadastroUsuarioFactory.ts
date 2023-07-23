@@ -1,6 +1,6 @@
+import { CadastrarUsuarioControlador } from "@controladores";
 import DatabaseSingleton from "@database";
 import { CadastroUsuario, RepositorioUsuario } from "@usuario";
-import { CadastrarUsuarioControlador } from "src/controladores/CadastrarUsuarioControlador";
 
 export class CadastroUsuarioFactory {
   static create(): CadastrarUsuarioControlador {

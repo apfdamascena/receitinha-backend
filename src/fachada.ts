@@ -1,10 +1,13 @@
+import {
+  CadastrarUsuarioControlador,
+  ReceitasExternasControlador,
+} from "@controladores";
 import { NextFunction, Request, Response } from "express";
-
-import { CadastrarUsuarioControlador } from "./controladores/CadastrarUsuarioControlador";
 
 export class Fachada {
   constructor(
-    private cadastrarUsuarioControlador: CadastrarUsuarioControlador
+    private cadastrarUsuarioControlador: CadastrarUsuarioControlador,
+    private subsitemaReceitasExternas: ReceitasExternasControlador
   ) {}
 
   async cadastrarUsuario(
@@ -45,6 +48,18 @@ export class Fachada {
     next: NextFunction
   ) {
     return this.cadastrarUsuarioControlador.updateUsuario(
+      request,
+      response,
+      next
+    );
+  }
+
+  async getReceitasExternas(
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ) {
+    return this.subsitemaReceitasExternas.getReceitasByName(
       request,
       response,
       next

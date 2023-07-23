@@ -1,7 +1,6 @@
 import { HttpStatus } from "@http";
 import { CadastroUsuario, ICadastroUsuarioRequest } from "@usuario";
 import { NextFunction, Request, Response } from "express";
-import { HttpException } from "src/middleware/errorHandler";
 import { parseType } from "src/parseType";
 
 export class CadastrarUsuarioControlador {
