@@ -16,7 +16,7 @@ export class ReceitasExternasControlador {
     next: NextFunction
   ): Promise<void> {
     try {
-      const body = parseType<IReceitasExternasRequest>(request.body);
+      const body = parseType<IReceitasExternasRequest>(request.query);
 
       const { nome } = body;
 
