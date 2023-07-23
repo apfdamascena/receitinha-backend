@@ -42,6 +42,9 @@
         ],
         "@database": [
          "./src/database/index.ts"
+        ],
+        "@service": [
+         "./src/service/index.ts"
         ]
       },
        "typeRoots": [
