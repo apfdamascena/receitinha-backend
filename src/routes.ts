@@ -18,4 +18,16 @@ export class Routes {
   ) {
     this.fachada.cadastrarUsuario(request, response, next);
   }
+
+  async readUsuario(request: Request, response: Response, next: NextFunction) {
+    this.fachada.readUsuario(request, response, next);
+  }
+
+  async deleteUsuario(
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ) {
+    this.fachada.deleteUsuario(request, response, next);
+  }
 }

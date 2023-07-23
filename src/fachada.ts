@@ -18,4 +18,24 @@ export class Fachada {
       next
     );
   }
+
+  async readUsuario(request: Request, response: Response, next: NextFunction) {
+    return this.cadastrarUsuarioControlador.readUsuario(
+      request,
+      response,
+      next
+    );
+  }
+
+  async deleteUsuario(
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ) {
+    return this.cadastrarUsuarioControlador.deleteUsuario(
+      request,
+      response,
+      next
+    );
+  }
 }

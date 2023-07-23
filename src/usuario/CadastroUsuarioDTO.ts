@@ -3,6 +3,7 @@ import Joi from "joi";
 import { Usuario } from "./Usuario";
 
 export interface ICadastroUsuarioRequest {
+  id: string;
   nome: string;
   senha: string;
   email: string;

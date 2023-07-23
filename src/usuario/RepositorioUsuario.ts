@@ -15,6 +15,7 @@ export class RepositorioUsuario implements IRepositorioUsuario {
     const user = data as Usuario;
     return user;
   }
+
   async save(usuario: Usuario): Promise<Usuario> {
     usuario.created_at = new Date();
     usuario.updated_at = new Date();
@@ -36,5 +37,13 @@ export class RepositorioUsuario implements IRepositorioUsuario {
     })) as unknown;
     const user = data as Usuario;
     return user.conquistas;
+  }
+
+  async deleteUser(userId: string): Promise<Usuario> {
+    const data = (await this.dataBaseCollection.deleteOne({
+      id: userId,
+    })) as unknown;
+    const user = data as Usuario;
+    return user;
   }
 }
