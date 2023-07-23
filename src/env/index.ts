@@ -7,7 +7,7 @@ const variables = z.object({
   PORT: z.coerce.number().default(3001),
   IPV4: z.string().default("0.0.0.0"),
   URL_DATABASE: z.string(),
-  DATABASE_NAME: z.string()
+  DATABASE_NAME: z.string(),
 });
 
 const ENV_VARIABLES = variables.safeParse(process.env);
