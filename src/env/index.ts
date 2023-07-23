@@ -8,6 +8,7 @@ const variables = z.object({
   IPV4: z.string().default("0.0.0.0"),
   URL_DATABASE: z.string(),
   DATABASE_NAME: z.string(),
+  RECEITAS_API_KEY: z.string(),
 });
 
 const ENV_VARIABLES = variables.safeParse(process.env);
