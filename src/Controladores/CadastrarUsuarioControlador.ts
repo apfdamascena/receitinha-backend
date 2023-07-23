@@ -77,4 +77,29 @@ export class CadastrarUsuarioControlador {
         });
     }
   }
+
+  async updateUsuario(
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ) {
+    try {
+      const body = parseType<ICadastroUsuarioRequest>(request.body);
+
+      const { usuario } = await this.cadastroUsuario.updateUsuario(body);
+
+      response.locals = {
+        ...response.locals,
+        data: usuario,
+      };
+
+      next();
+    } catch (error) {
+      if (error instanceof Error)
+        next({
+          status: HttpStatus.BAD_REQUEST,
+          message: error.message,
+        });
+    }
+  }
 }
