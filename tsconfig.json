@@ -45,6 +45,12 @@
         ],
         "@service": [
          "./src/service/index.ts"
+        ],
+        "@receitasExternas": [
+         "./src/receitasExternas/index.ts"
+        ],
+        "@receita": [
+         "./src/receita/index.ts"
         ]
       },
        "typeRoots": [
