@@ -55,4 +55,15 @@ export class CadastroUsuario {
 
     return { usuario };
   }
+
+  async updateUsuario(
+    input: ICadastroUsuarioRequest
+  ): Promise<ICadastroUsuarioResponse> {
+    // [UPDATE] quando CRUD de conquistas tiver pronto a gente coloca aqui
+    const { id, nome } = input;
+
+    const usuario = await this.repositorioUsuario.updateUser(id, nome);
+
+    return { usuario };
+  }
 }

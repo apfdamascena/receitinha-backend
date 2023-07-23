@@ -46,4 +46,14 @@ export class RepositorioUsuario implements IRepositorioUsuario {
     const user = data as Usuario;
     return user;
   }
+
+  async updateUser(userId: string, nome: string): Promise<Usuario> {
+    const data = (await this.dataBaseCollection.findOneAndUpdate(
+      { id: userId },
+      { $set: { nome: nome } },
+      { upsert: false }
+    )) as unknown;
+    const user = data as Usuario;
+    return user;
+  }
 }

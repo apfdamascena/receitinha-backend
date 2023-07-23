@@ -30,4 +30,12 @@ export class Routes {
   ) {
     this.fachada.deleteUsuario(request, response, next);
   }
+
+  async updateUsuario(
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ) {
+    this.fachada.updateUsuario(request, response, next);
+  }
 }

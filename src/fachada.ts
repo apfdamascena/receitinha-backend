@@ -38,4 +38,16 @@ export class Fachada {
       next
     );
   }
+
+  async updateUsuario(
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ) {
+    return this.cadastrarUsuarioControlador.updateUsuario(
+      request,
+      response,
+      next
+    );
+  }
 }
