@@ -14,55 +14,39 @@ export class Fachada {
     request: Request,
     response: Response,
     next: NextFunction
-  ) {
-    return this.cadastrarUsuarioControlador.cadastrarUsuario(
-      request,
-      response,
-      next
-    );
+  ): Promise<void> {
+    this.cadastrarUsuarioControlador.cadastrarUsuario(request, response, next);
   }
 
-  async readUsuario(request: Request, response: Response, next: NextFunction) {
-    return this.cadastrarUsuarioControlador.readUsuario(
-      request,
-      response,
-      next
-    );
+  async readUsuario(
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ): Promise<void> {
+    this.cadastrarUsuarioControlador.readUsuario(request, response, next);
   }
 
   async deleteUsuario(
     request: Request,
     response: Response,
     next: NextFunction
-  ) {
-    return this.cadastrarUsuarioControlador.deleteUsuario(
-      request,
-      response,
-      next
-    );
+  ): Promise<void> {
+    this.cadastrarUsuarioControlador.deleteUsuario(request, response, next);
   }
 
   async updateUsuario(
     request: Request,
     response: Response,
     next: NextFunction
-  ) {
-    return this.cadastrarUsuarioControlador.updateUsuario(
-      request,
-      response,
-      next
-    );
+  ): Promise<void> {
+    this.cadastrarUsuarioControlador.updateUsuario(request, response, next);
   }
 
   async getReceitasExternas(
     request: Request,
     response: Response,
     next: NextFunction
-  ) {
-    return this.subsitemaReceitasExternas.getReceitasByName(
-      request,
-      response,
-      next
-    );
+  ): Promise<void> {
+    this.subsitemaReceitasExternas.getReceitasByName(request, response, next);
   }
 }

@@ -20,11 +20,15 @@ export class Routes {
     request: Request,
     response: Response,
     next: NextFunction
-  ) {
+  ): Promise<void> {
     this.fachada.cadastrarUsuario(request, response, next);
   }
 
-  async readUsuario(request: Request, response: Response, next: NextFunction) {
+  async readUsuario(
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ): Promise<void> {
     this.fachada.readUsuario(request, response, next);
   }
 
@@ -32,7 +36,7 @@ export class Routes {
     request: Request,
     response: Response,
     next: NextFunction
-  ) {
+  ): Promise<void> {
     this.fachada.deleteUsuario(request, response, next);
   }
 
@@ -40,7 +44,7 @@ export class Routes {
     request: Request,
     response: Response,
     next: NextFunction
-  ) {
+  ): Promise<void> {
     this.fachada.updateUsuario(request, response, next);
   }
 
@@ -48,7 +52,7 @@ export class Routes {
     request: Request,
     response: Response,
     next: NextFunction
-  ) {
+  ): Promise<void> {
     this.fachada.getReceitasExternas(request, response, next);
   }
 }
