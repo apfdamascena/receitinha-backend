@@ -32,14 +32,9 @@ export class CadastroUsuario {
     return { usuario };
   }
 
-  async readUsuario(
-    input: ICadastroUsuarioRequest
-  ): Promise<ICadastroUsuarioResponse> {
-    const { id } = input;
-
+  async readUsuario(id: string): Promise<ICadastroUsuarioResponse> {
     const usuario = await this.repositorioUsuario.findUserById(id);
     delete usuario.senha;
-
     return { usuario };
   }
 

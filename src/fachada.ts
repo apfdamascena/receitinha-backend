@@ -17,12 +17,8 @@ export class Fachada {
     return this.cadastrarUsuarioControlador.cadastrarUsuario(usuario);
   }
 
-  async readUsuario(
-    request: Request,
-    response: Response,
-    next: NextFunction
-  ): Promise<void> {
-    this.cadastrarUsuarioControlador.readUsuario(request, response, next);
+  async readUsuario(usuarioId: string): Promise<ICadastroUsuarioResponse> {
+    return this.cadastrarUsuarioControlador.readUsuario(usuarioId);
   }
 
   async deleteUsuario(

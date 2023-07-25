@@ -16,25 +16,9 @@ export class CadastrarUsuarioControlador {
     return usuarioCriado;
   }
 
-  async readUsuario(request: Request, response: Response, next: NextFunction) {
-    try {
-      const params = parseType<ICadastroUsuarioRequest>(request.params);
-
-      const { usuario } = await this.cadastroUsuario.readUsuario(params);
-
-      response.locals = {
-        ...response.locals,
-        data: usuario,
-      };
-
-      next();
-    } catch (error) {
-      if (error instanceof Error)
-        next({
-          status: HttpStatus.BAD_REQUEST,
-          message: error.message,
-        });
-    }
+  async readUsuario(idUsuario: string): Promise<ICadastroUsuarioResponse> {
+    const usuario = await this.cadastroUsuario.readUsuario(idUsuario);
+    return usuario;
   }
 
   async deleteUsuario(

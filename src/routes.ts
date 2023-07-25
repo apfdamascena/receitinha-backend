@@ -31,7 +31,7 @@ export class Routes {
       );
 
       const novoUsuario = new Usuario({ nome, senha, email, conquistas: [] });
-      const usuario = this.fachada.cadastrarUsuario(novoUsuario);
+      const usuario = await this.fachada.cadastrarUsuario(novoUsuario);
 
       response.locals = {
         ...response.locals,
@@ -54,7 +54,25 @@ export class Routes {
     response: Response,
     next: NextFunction
   ): Promise<void> {
-    this.fachada.readUsuario(request, response, next);
+    try {
+      const { id: usuarioId } = parseType<ICadastroUsuarioRequest>(
+        request.params
+      );
+      const usuario = await this.fachada.readUsuario(usuarioId);
+
+      response.locals = {
+        ...response.locals,
+        usuario,
+      };
+      next();
+    } catch (error) {
+      if (error instanceof Error)
+        next({
+          status: HttpStatus.BAD_REQUEST,
+          message: error.message,
+        });
+      console.log(error);
+    }
   }
 
   async deleteUsuario(
