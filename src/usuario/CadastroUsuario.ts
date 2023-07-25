@@ -10,9 +10,7 @@ import { Usuario } from "./Usuario";
 export class CadastroUsuario {
   constructor(private repositorioUsuario: IRepositorioUsuario) {}
 
-  async cadastrarUsuario(
-    input: ICadastroUsuarioRequest
-  ): Promise<ICadastroUsuarioResponse> {
+  async cadastrarUsuario(input: Usuario): Promise<ICadastroUsuarioResponse> {
     const { email, nome, senha } = input;
 
     const isUsuarioAlreadyExists = await this.repositorioUsuario.findByEmail(
@@ -24,7 +22,7 @@ export class CadastroUsuario {
     const novoUsuario = new Usuario({
       nome,
       email,
-      senha: hashSync(senha, genSaltSync(10)),
+      senha: hashSync(senha || "", genSaltSync(10)),
       conquistas: [],
     });
 

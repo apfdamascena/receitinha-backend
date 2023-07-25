@@ -4,18 +4,17 @@ import {
 } from "@controladores";
 import { NextFunction, Request, Response } from "express";
 
+import { ICadastroUsuarioResponse } from "./usuario/CadastroUsuarioDTO";
+import { Usuario } from "./usuario/Usuario";
+
 export class Fachada {
   constructor(
     private cadastrarUsuarioControlador: CadastrarUsuarioControlador,
     private subsitemaReceitasExternas: ReceitasExternasControlador
   ) {}
 
-  async cadastrarUsuario(
-    request: Request,
-    response: Response,
-    next: NextFunction
-  ): Promise<void> {
-    this.cadastrarUsuarioControlador.cadastrarUsuario(request, response, next);
+  async cadastrarUsuario(usuario: Usuario): Promise<ICadastroUsuarioResponse> {
+    return this.cadastrarUsuarioControlador.cadastrarUsuario(usuario);
   }
 
   async readUsuario(
