@@ -2,7 +2,7 @@ import { Receita } from "src/receita/Receita";
 
 import { ReceitaExterna } from "./ReceitasExternas";
 
-export class ReceitasExternasAdapter {
+export class ReceitasExternasAdapterAttributes {
   convert({ title, ingredients, instructions }: ReceitaExterna): Receita {
     return new Receita({
       titulo: title,

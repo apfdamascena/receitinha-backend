@@ -10,9 +10,7 @@ import { Usuario } from "./Usuario";
 export class CadastroUsuario {
   constructor(private repositorioUsuario: IRepositorioUsuario) {}
 
-  async cadastrarUsuario(
-    input: ICadastroUsuarioRequest
-  ): Promise<ICadastroUsuarioResponse> {
+  async cadastrarUsuario(input: Usuario): Promise<ICadastroUsuarioResponse> {
     const { email, nome, senha } = input;
 
     const isUsuarioAlreadyExists = await this.repositorioUsuario.findByEmail(
@@ -24,7 +22,7 @@ export class CadastroUsuario {
     const novoUsuario = new Usuario({
       nome,
       email,
-      senha: hashSync(senha, genSaltSync(10)),
+      senha: hashSync(senha || "", genSaltSync(10)),
       conquistas: [],
     });
 
@@ -34,36 +32,22 @@ export class CadastroUsuario {
     return { usuario };
   }
 
-  async readUsuario(
-    input: ICadastroUsuarioRequest
-  ): Promise<ICadastroUsuarioResponse> {
-    const { id } = input;
-
+  async readUsuario(id: string): Promise<ICadastroUsuarioResponse> {
     const usuario = await this.repositorioUsuario.findUserById(id);
     delete usuario.senha;
-
     return { usuario };
   }
 
-  async deleteUsuario(
-    input: ICadastroUsuarioRequest
-  ): Promise<ICadastroUsuarioResponse> {
-    const { id } = input;
-
-    const usuario = await this.repositorioUsuario.deleteUser(id);
-    delete usuario.senha;
-
-    return { usuario };
+  async deleteUsuario(usuarioId: string): Promise<void> {
+    await this.repositorioUsuario.deleteUser(usuarioId);
   }
 
-  async updateUsuario(
-    input: ICadastroUsuarioRequest
-  ): Promise<ICadastroUsuarioResponse> {
+  async updateUsuario(usuario: Usuario): Promise<ICadastroUsuarioResponse> {
     // [UPDATE] quando CRUD de conquistas tiver pronto a gente coloca aqui
-    const { id, nome } = input;
+    const { id, nome } = usuario;
 
-    const usuario = await this.repositorioUsuario.updateUser(id, nome);
+    const newUsuario = await this.repositorioUsuario.updateUser(id, nome);
 
-    return { usuario };
+    return { usuario: newUsuario };
   }
 }

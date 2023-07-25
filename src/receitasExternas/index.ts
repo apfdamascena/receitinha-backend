@@ -1,6 +1,6 @@
 import { ISubsistemaReceitasExternas } from "./ISubsistemaReceitasExternas";
 import { ReceitaExterna } from "./ReceitasExternas";
-import { ReceitasExternasAdapter } from "./ReceitasExternasAdapter";
+import { ReceitasExternasAdapterAttributes } from "./ReceitasExternasAdapter";
 import {
   IReceitasExternasRequest,
   IReceitasExternasResponse,
@@ -13,5 +13,5 @@ export {
   IReceitasExternasRequest,
   IReceitasExternasResponse,
   SubsistemaReceitasExternas,
-  ReceitasExternasAdapter,
+  ReceitasExternasAdapterAttributes,
 };

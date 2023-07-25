@@ -4,65 +4,32 @@ import {
 } from "@controladores";
 import { NextFunction, Request, Response } from "express";
 
+import { IReceitasExternasResponse } from "./receitasExternas/ReceitasExternasDTO";
+import { ICadastroUsuarioResponse } from "./usuario/CadastroUsuarioDTO";
+import { Usuario } from "./usuario/Usuario";
+
 export class Fachada {
   constructor(
     private cadastrarUsuarioControlador: CadastrarUsuarioControlador,
     private subsitemaReceitasExternas: ReceitasExternasControlador
   ) {}
 
-  async cadastrarUsuario(
-    request: Request,
-    response: Response,
-    next: NextFunction
-  ) {
-    return this.cadastrarUsuarioControlador.cadastrarUsuario(
-      request,
-      response,
-      next
-    );
+  async cadastrarUsuario(usuario: Usuario): Promise<ICadastroUsuarioResponse> {
+    return await this.cadastrarUsuarioControlador.cadastrarUsuario(usuario);
+  }
+  async readUsuario(usuarioId: string): Promise<ICadastroUsuarioResponse> {
+    return await this.cadastrarUsuarioControlador.readUsuario(usuarioId);
   }
 
-  async readUsuario(request: Request, response: Response, next: NextFunction) {
-    return this.cadastrarUsuarioControlador.readUsuario(
-      request,
-      response,
-      next
-    );
+  async deleteUsuario(usuarioId: string): Promise<void> {
+    await this.cadastrarUsuarioControlador.deleteUsuario(usuarioId);
   }
 
-  async deleteUsuario(
-    request: Request,
-    response: Response,
-    next: NextFunction
-  ) {
-    return this.cadastrarUsuarioControlador.deleteUsuario(
-      request,
-      response,
-      next
-    );
+  async updateUsuario(usuario: Usuario): Promise<ICadastroUsuarioResponse> {
+    return await this.cadastrarUsuarioControlador.updateUsuario(usuario);
   }
 
-  async updateUsuario(
-    request: Request,
-    response: Response,
-    next: NextFunction
-  ) {
-    return this.cadastrarUsuarioControlador.updateUsuario(
-      request,
-      response,
-      next
-    );
-  }
-
-  async getReceitasExternas(
-    request: Request,
-    response: Response,
-    next: NextFunction
-  ) {
-    return this.subsitemaReceitasExternas.getReceitasByName(
-      request,
-      response,
-      next
-    );
+  async getReceitasExternas(nome: string): Promise<IReceitasExternasResponse> {
+    return await this.subsitemaReceitasExternas.getReceitasByName(nome);
   }
 }
