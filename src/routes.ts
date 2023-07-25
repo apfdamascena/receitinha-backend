@@ -5,6 +5,7 @@ import { ReceitasExternasFactory } from "./controladoresFactories/ReceitaExterna
 import { Fachada } from "./fachada";
 import { HttpStatus } from "./http/HttpStatus";
 import { parseType } from "./parseType";
+import { IReceitasExternasRequest } from "./receitasExternas/ReceitasExternasDTO";
 import { ICadastroUsuarioRequest } from "./usuario/CadastroUsuarioDTO";
 import { Usuario } from "./usuario/Usuario";
 
@@ -35,7 +36,7 @@ export class Routes {
 
       response.locals = {
         ...response.locals,
-        usuario,
+        data: usuario,
       };
 
       next();
@@ -62,7 +63,7 @@ export class Routes {
 
       response.locals = {
         ...response.locals,
-        usuario,
+        data: usuario,
       };
       next();
     } catch (error) {
@@ -80,7 +81,22 @@ export class Routes {
     response: Response,
     next: NextFunction
   ): Promise<void> {
-    this.fachada.deleteUsuario(request, response, next);
+    try {
+      const { id: usuarioId } = parseType<ICadastroUsuarioRequest>(
+        request.params
+      );
+
+      await this.fachada.deleteUsuario(usuarioId);
+
+      next();
+    } catch (error) {
+      if (error instanceof Error)
+        next({
+          status: HttpStatus.BAD_REQUEST,
+          message: error.message,
+        });
+      console.log(error);
+    }
   }
 
   async updateUsuario(
@@ -88,7 +104,40 @@ export class Routes {
     response: Response,
     next: NextFunction
   ): Promise<void> {
-    this.fachada.updateUsuario(request, response, next);
+    try {
+      const body = {
+        ...request.params,
+        ...request.body,
+      };
+
+      const { id, nome, email, senha } =
+        parseType<ICadastroUsuarioRequest>(body);
+
+      const usuario = new Usuario(
+        {
+          nome,
+          email,
+          senha,
+        },
+        id
+      );
+
+      const usuarioUpdate = await this.fachada.updateUsuario(usuario);
+
+      response.locals = {
+        ...response.locals,
+        data: usuarioUpdate,
+      };
+
+      next();
+    } catch (error) {
+      if (error instanceof Error)
+        next({
+          status: HttpStatus.BAD_REQUEST,
+          message: error.message,
+        });
+      console.log(error);
+    }
   }
 
   async getReceitasExternas(
@@ -96,6 +145,23 @@ export class Routes {
     response: Response,
     next: NextFunction
   ): Promise<void> {
-    this.fachada.getReceitasExternas(request, response, next);
+    try {
+      const { nome } = parseType<IReceitasExternasRequest>(request.query);
+
+      const receitas = await this.fachada.getReceitasExternas(nome);
+
+      response.locals = {
+        ...response.locals,
+        data: receitas,
+      };
+      next();
+    } catch (error) {
+      if (error instanceof Error)
+        next({
+          status: HttpStatus.BAD_REQUEST,
+          message: error.message,
+        });
+      console.log(error);
+    }
   }
 }

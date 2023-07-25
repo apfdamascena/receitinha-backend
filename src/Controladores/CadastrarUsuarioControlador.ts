@@ -21,53 +21,12 @@ export class CadastrarUsuarioControlador {
     return usuario;
   }
 
-  async deleteUsuario(
-    request: Request,
-    response: Response,
-    next: NextFunction
-  ) {
-    try {
-      const params = parseType<ICadastroUsuarioRequest>(request.params);
-
-      const { usuario } = await this.cadastroUsuario.deleteUsuario(params);
-
-      response.locals = {
-        ...response.locals,
-        data: usuario,
-      };
-
-      next();
-    } catch (error) {
-      if (error instanceof Error)
-        next({
-          status: HttpStatus.BAD_REQUEST,
-          message: error.message,
-        });
-    }
+  async deleteUsuario(usuarioId: string): Promise<void> {
+    await this.cadastroUsuario.deleteUsuario(usuarioId);
   }
 
-  async updateUsuario(
-    request: Request,
-    response: Response,
-    next: NextFunction
-  ) {
-    try {
-      const body = parseType<ICadastroUsuarioRequest>(request.body);
-
-      const { usuario } = await this.cadastroUsuario.updateUsuario(body);
-
-      response.locals = {
-        ...response.locals,
-        data: usuario,
-      };
-
-      next();
-    } catch (error) {
-      if (error instanceof Error)
-        next({
-          status: HttpStatus.BAD_REQUEST,
-          message: error.message,
-        });
-    }
+  async updateUsuario(usuario: Usuario): Promise<ICadastroUsuarioResponse> {
+    const newUsuario = await this.cadastroUsuario.updateUsuario(usuario);
+    return newUsuario;
   }
 }

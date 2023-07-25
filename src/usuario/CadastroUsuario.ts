@@ -38,25 +38,16 @@ export class CadastroUsuario {
     return { usuario };
   }
 
-  async deleteUsuario(
-    input: ICadastroUsuarioRequest
-  ): Promise<ICadastroUsuarioResponse> {
-    const { id } = input;
-
-    const usuario = await this.repositorioUsuario.deleteUser(id);
-    delete usuario.senha;
-
-    return { usuario };
+  async deleteUsuario(usuarioId: string): Promise<void> {
+    await this.repositorioUsuario.deleteUser(usuarioId);
   }
 
-  async updateUsuario(
-    input: ICadastroUsuarioRequest
-  ): Promise<ICadastroUsuarioResponse> {
+  async updateUsuario(usuario: Usuario): Promise<ICadastroUsuarioResponse> {
     // [UPDATE] quando CRUD de conquistas tiver pronto a gente coloca aqui
-    const { id, nome } = input;
+    const { id, nome } = usuario;
 
-    const usuario = await this.repositorioUsuario.updateUser(id, nome);
+    const newUsuario = await this.repositorioUsuario.updateUser(id, nome);
 
-    return { usuario };
+    return { usuario: newUsuario };
   }
 }

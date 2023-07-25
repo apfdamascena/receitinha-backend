@@ -21,20 +21,12 @@ export class Fachada {
     return this.cadastrarUsuarioControlador.readUsuario(usuarioId);
   }
 
-  async deleteUsuario(
-    request: Request,
-    response: Response,
-    next: NextFunction
-  ): Promise<void> {
-    this.cadastrarUsuarioControlador.deleteUsuario(request, response, next);
+  async deleteUsuario(usuarioId: string): Promise<void> {
+    this.cadastrarUsuarioControlador.deleteUsuario(usuarioId);
   }
 
-  async updateUsuario(
-    request: Request,
-    response: Response,
-    next: NextFunction
-  ): Promise<void> {
-    this.cadastrarUsuarioControlador.updateUsuario(request, response, next);
+  async updateUsuario(usuario: Usuario): Promise<ICadastroUsuarioResponse> {
+    return this.cadastrarUsuarioControlador.updateUsuario(usuario);
   }
 
   async getReceitasExternas(
