@@ -1,7 +1,8 @@
 import { HttpStatus } from "@http";
 import {
   IReceitasExternasRequest,
-  ReceitasExternasAdapter,
+  IReceitasExternasResponse,
+  ReceitasExternasAdapterAttributes,
 } from "@receitasExternas";
 import { NextFunction, Request, Response } from "express";
 import { parseType } from "src/parseType";
@@ -10,36 +11,14 @@ import { ISubsistemaReceitasExternas } from "src/receitasExternas/ISubsistemaRec
 export class ReceitasExternasControlador {
   constructor(private receitasExternas: ISubsistemaReceitasExternas) {}
 
-  async getReceitasByName(
-    request: Request,
-    response: Response,
-    next: NextFunction
-  ): Promise<void> {
-    try {
-      const body = parseType<IReceitasExternasRequest>(request.query);
+  async getReceitasByName(nome: string): Promise<IReceitasExternasResponse> {
+    const data = await this.receitasExternas.findReceitaByName(nome);
+    const receitasExternasAdapter = new ReceitasExternasAdapterAttributes();
 
-      const { nome } = body;
+    const receitas = data.map((receita) =>
+      receitasExternasAdapter.convert(receita)
+    );
 
-      const data = await this.receitasExternas.findReceitaByName(nome);
-      const receitasExternasAdapter = new ReceitasExternasAdapter();
-
-      const receitas = data.map((receita) =>
-        receitasExternasAdapter.convert(receita)
-      );
-
-      response.locals = {
-        ...response.locals,
-        data: receitas,
-      };
-
-      next();
-    } catch (error) {
-      console.log(error);
-      if (error instanceof Error)
-        next({
-          status: HttpStatus.BAD_REQUEST,
-          message: error.message,
-        });
-    }
+    return { receitas };
   }
 }

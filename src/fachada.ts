@@ -4,6 +4,7 @@ import {
 } from "@controladores";
 import { NextFunction, Request, Response } from "express";
 
+import { IReceitasExternasResponse } from "./receitasExternas/ReceitasExternasDTO";
 import { ICadastroUsuarioResponse } from "./usuario/CadastroUsuarioDTO";
 import { Usuario } from "./usuario/Usuario";
 
@@ -14,26 +15,21 @@ export class Fachada {
   ) {}
 
   async cadastrarUsuario(usuario: Usuario): Promise<ICadastroUsuarioResponse> {
-    return this.cadastrarUsuarioControlador.cadastrarUsuario(usuario);
+    return await this.cadastrarUsuarioControlador.cadastrarUsuario(usuario);
   }
-
   async readUsuario(usuarioId: string): Promise<ICadastroUsuarioResponse> {
-    return this.cadastrarUsuarioControlador.readUsuario(usuarioId);
+    return await this.cadastrarUsuarioControlador.readUsuario(usuarioId);
   }
 
   async deleteUsuario(usuarioId: string): Promise<void> {
-    this.cadastrarUsuarioControlador.deleteUsuario(usuarioId);
+    await this.cadastrarUsuarioControlador.deleteUsuario(usuarioId);
   }
 
   async updateUsuario(usuario: Usuario): Promise<ICadastroUsuarioResponse> {
-    return this.cadastrarUsuarioControlador.updateUsuario(usuario);
+    return await this.cadastrarUsuarioControlador.updateUsuario(usuario);
   }
 
-  async getReceitasExternas(
-    request: Request,
-    response: Response,
-    next: NextFunction
-  ): Promise<void> {
-    this.subsitemaReceitasExternas.getReceitasByName(request, response, next);
+  async getReceitasExternas(nome: string): Promise<IReceitasExternasResponse> {
+    return await this.subsitemaReceitasExternas.getReceitasByName(nome);
   }
 }
