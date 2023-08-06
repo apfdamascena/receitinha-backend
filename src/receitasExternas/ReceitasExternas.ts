@@ -1,4 +1,6 @@
 export class ReceitaExterna {
+  id?: string;
+
   title: string;
   ingredients: string;
   servings: string;

@@ -59,6 +59,7 @@ export class Routes {
       const { id: usuarioId } = parseType<ICadastroUsuarioRequest>(
         request.params
       );
+
       const usuario = await this.fachada.readUsuario(usuarioId);
 
       response.locals = {
@@ -147,6 +148,12 @@ export class Routes {
   ): Promise<void> {
     try {
       const { nome } = parseType<IReceitasExternasRequest>(request.query);
+
+      if (!nome)
+        next({
+          status: HttpStatus.BAD_REQUEST,
+          message: "undefined value",
+        });
 
       const receitas = await this.fachada.getReceitasExternas(nome);
 
