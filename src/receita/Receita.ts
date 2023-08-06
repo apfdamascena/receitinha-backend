@@ -1,4 +1,5 @@
 export class Receita {
+  id?: string;
   titulo: string;
   ingredientes: string;
   passos: string;
