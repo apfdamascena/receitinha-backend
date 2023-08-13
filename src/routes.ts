@@ -1,13 +1,18 @@
+import {
+  AutenticaUsuarioFactory,
+  CadastroUsuarioFactory,
+  ReceitasExternasFactory,
+} from "@controlerFactories";
 import { NextFunction, Request, Response } from "express";
 
-import { CadastroUsuarioFactory } from "./controladoresFactories/CadastroUsuarioFactory";
-import { ReceitasExternasFactory } from "./controladoresFactories/ReceitaExternaFactory";
 import { Fachada } from "./fachada";
 import { HttpStatus } from "./http/HttpStatus";
+import { ILoginRequest, LoginSchema } from "./login/ILoginRequestDTO";
 import { parseType } from "./parseType";
 import { IReceitasExternasRequest } from "./receitasExternas/ReceitasExternasDTO";
 import { ICadastroUsuarioRequest } from "./usuario/CadastroUsuarioDTO";
 import { Usuario } from "./usuario/Usuario";
+import { formatErrors } from "./utils/FormatError";
 
 export class Routes {
   private fachada: Fachada;
@@ -15,9 +20,11 @@ export class Routes {
   constructor() {
     const cadastroUsuarioControlador = CadastroUsuarioFactory.create();
     const subsitemaReceitasExternas = ReceitasExternasFactory.create();
+    const autenticaUsuario = AutenticaUsuarioFactory.create();
     this.fachada = new Fachada(
       cadastroUsuarioControlador,
-      subsitemaReceitasExternas
+      subsitemaReceitasExternas,
+      autenticaUsuario
     );
   }
 
@@ -170,5 +177,33 @@ export class Routes {
         });
       console.log(error);
     }
+  }
+
+  async login(
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ): Promise<void> {
+    const body = parseType<ILoginRequest>(request.body);
+
+    const { value: input, error } = LoginSchema.validate(body, {
+      abortEarly: true,
+    });
+
+    const { email, senha } = input;
+
+    if (error)
+      next({
+        status: HttpStatus.BAD_REQUEST,
+        message: formatErrors(error.details),
+      });
+
+    const usuario = new Usuario({
+      email,
+      senha,
+      nome: "",
+    });
+
+    this.fachada;
   }
 }

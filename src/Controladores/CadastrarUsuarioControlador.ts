@@ -1,12 +1,4 @@
-import { HttpStatus } from "@http";
-import {
-  CadastroUsuario,
-  ICadastroUsuarioRequest,
-  ICadastroUsuarioResponse,
-  Usuario,
-} from "@usuario";
-import { NextFunction, Request, Response } from "express";
-import { parseType } from "src/parseType";
+import { CadastroUsuario, ICadastroUsuarioResponse, Usuario } from "@usuario";
 
 export class CadastrarUsuarioControlador {
   constructor(private cadastroUsuario: CadastroUsuario) {}

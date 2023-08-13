@@ -51,6 +51,9 @@
         ],
         "@receita": [
          "./src/receita/index.ts"
+        ],
+        "@controlerFactories": [
+         "./src/controladoresFactories/index.ts"
         ]
       },
        "typeRoots": [
