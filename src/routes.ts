@@ -184,26 +184,36 @@ export class Routes {
     response: Response,
     next: NextFunction
   ): Promise<void> {
-    const body = parseType<ILoginRequest>(request.body);
+    try {
+      const body = parseType<ILoginRequest>(request.body);
 
-    const { value: input, error } = LoginSchema.validate(body, {
-      abortEarly: true,
-    });
-
-    const { email, senha } = input;
-
-    if (error)
-      next({
-        status: HttpStatus.BAD_REQUEST,
-        message: formatErrors(error.details),
+      const { value: input, error } = LoginSchema.validate(body, {
+        abortEarly: true,
       });
 
-    const usuario = new Usuario({
-      email,
-      senha,
-      nome: "",
-    });
+      const { email, senha } = input;
 
-    this.fachada;
+      if (error)
+        next({
+          status: HttpStatus.BAD_REQUEST,
+          message: formatErrors(error.details),
+        });
+
+      const usuario = new Usuario({
+        email,
+        senha,
+        nome: "",
+      });
+
+      const resposne = await this.fachada.authenticate(usuario);
+      console.log(response);
+    } catch (error) {
+      if (error instanceof Error)
+        next({
+          status: HttpStatus.BAD_REQUEST,
+          message: error.message,
+        });
+      console.log(error);
+    }
   }
 }

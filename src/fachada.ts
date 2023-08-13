@@ -1,9 +1,9 @@
 import {
   CadastrarUsuarioControlador,
   ReceitasExternasControlador,
+  AutenticarUsuarioControlador,
 } from "@controladores";
 
-import { AutenticarUsuarioControlador } from "./controladores/AutenticarUsuarioControlador";
 import { ILoginResponse } from "./login/ILoginRequestDTO";
 import { IReceitasExternasResponse } from "./receitasExternas/ReceitasExternasDTO";
 import { ICadastroUsuarioResponse } from "./usuario/CadastroUsuarioDTO";
