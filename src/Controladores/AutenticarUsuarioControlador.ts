@@ -5,6 +5,6 @@ export class AutenticarUsuarioControlador {
   constructor(private cadastroUsuario: CadastroUsuario) {}
 
   async autentica(usuario: Usuario): Promise<ILoginResponse> {
-    return { token: "" };
+    return { token: "dadasdasdasdasdkasdklaj" };
   }
 }

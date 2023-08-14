@@ -205,8 +205,14 @@ export class Routes {
         nome: "",
       });
 
-      const resposne = await this.fachada.authenticate(usuario);
-      console.log(response);
+      const { token } = await this.fachada.authenticate(usuario);
+
+      response.locals = {
+        ...response.locals,
+        data: token,
+      };
+
+      next();
     } catch (error) {
       if (error instanceof Error)
         next({
