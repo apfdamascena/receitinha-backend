@@ -35,5 +35,7 @@ export class Fachada {
     return await this.subsitemaReceitasExternas.getReceitasByName(nome);
   }
 
-  async authenticate(usuario: Usuario): Promise<ILoginResponse> {}
+  async authenticate(usuario: Usuario): Promise<ILoginResponse> {
+    return await this.autenticarUsuarioControlador.autentica(usuario);
+  }
 }

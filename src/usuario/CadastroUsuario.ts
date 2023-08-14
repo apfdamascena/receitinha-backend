@@ -1,9 +1,6 @@
 import { genSaltSync, hashSync } from "bcryptjs";
 
-import {
-  ICadastroUsuarioRequest,
-  ICadastroUsuarioResponse,
-} from "./CadastroUsuarioDTO";
+import { ICadastroUsuarioResponse } from "./CadastroUsuarioDTO";
 import { IRepositorioUsuario } from "./IRepositorioUsuario";
 import { Usuario } from "./Usuario";
 
@@ -34,6 +31,12 @@ export class CadastroUsuario {
 
   async readUsuario(id: string): Promise<ICadastroUsuarioResponse> {
     const usuario = await this.repositorioUsuario.findUserById(id);
+    delete usuario.senha;
+    return { usuario };
+  }
+
+  async readUsuarioBy(email: string): Promise<ICadastroUsuarioResponse> {
+    const usuario = await this.repositorioUsuario.findByEmail(email);
     delete usuario.senha;
     return { usuario };
   }
