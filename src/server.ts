@@ -4,22 +4,16 @@ import { env } from "./env";
 
 (async () => {
   try {
-    // DatabaseSingleton.getInstance().getDatabase().$connect();
     console.log("[Database]: connected");
 
     app.listen(env.PORT, async () => {
       const message = `[Server]: Server ready at port ${env.PORT}`;
 
-      await DatabaseSingleton.getInstance()
+      const teste = await DatabaseSingleton.getInstance()
         .getDatabase()
-        .usuario.create({
-          data: {
-            email: "sofianovica1010@gmail.com",
-            nome: "sofaia123",
-            senha: "12345",
-          },
-        });
+        .usuario.findMany();
       console.log(message);
+      console.log(teste);
     });
   } catch (error) {
     console.log(`[Receitinha-Server]: failed to connect.`);

@@ -10,11 +10,13 @@ export class RepositorioUsuario implements IRepositorioUsuario {
   constructor(private database: PrismaClient) {}
 
   async findByEmail(email: string): Promise<Usuario | null> {
-    // const user = await this.database.usuario.findFirst({
-    //   where: {
-    //     email,
-    //   },
-    // });
+    const user = await this.database.usuario.findFirst({
+      where: {
+        email,
+      },
+    });
+
+    console.log(user);
 
     // const { nome, email, senha } = user;
 
@@ -27,11 +29,20 @@ export class RepositorioUsuario implements IRepositorioUsuario {
   }
 
   async save(usuario: Usuario): Promise<Usuario | null> {
-    return null;
     // usuario.created_at = new Date();
     // usuario.updated_at = new Date();
+    const teste = await this.database.usuario.create({
+      data: {
+        nome: usuario.nome,
+        email: usuario.email,
+        senha: "1234",
+      },
+    });
+
+    console.log(teste);
     // await this.dataBaseCollection.insertOne(usuario);
     // return usuario;
+    return null;
   }
 
   async findUserById(userId: string): Promise<Usuario | null> {
