@@ -52,7 +52,7 @@
         "dev": "./node_modules/.bin/ts-node-dev -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules --no-notify --debug src/server.ts",
         "lint": "eslint ./src --ext .ts",
         "lint:fix": "eslint ./src --ext .ts --fix", 
-        "migrate": "yarn prisma migrate dev"
+        "generate": "yarn prisma generate"
     },
     "main": "index.js",
     "license": "MIT"

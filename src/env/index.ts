@@ -6,7 +6,7 @@ const variables = z.object({
   NODE_ENV: z.enum(["dev", "prod", "test"]).default("dev"),
   PORT: z.coerce.number().default(3001),
   IPV4: z.string().default("0.0.0.0"),
-  URL_DATABASE: z.string(),
+  DATABASE_URL: z.string(),
   DATABASE_NAME: z.string(),
   RECEITAS_API_KEY: z.string(),
 });
