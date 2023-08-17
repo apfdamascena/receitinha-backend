@@ -9,29 +9,22 @@ export class RepositorioUsuario implements IRepositorioUsuario {
 
   constructor(private database: PrismaClient) {}
 
-  async findByEmail(email: string): Promise<Usuario | null> {
+  async findByEmail(email: string): Promise<Usuario> {
     const user = await this.database.usuario.findFirst({
       where: {
         email,
       },
     });
 
-    console.log(user);
+    const userFound = user as Usuario;
 
-    // const { nome, email, senha } = user;
-
-    return null;
-
-    // return user;
-    // const data = (await this.dataBaseCollection.findOne({ email })) as unknown;
-    // const user = data as Usuario;
-    // return user;
+    return userFound;
   }
 
-  async save(usuario: Usuario): Promise<Usuario | null> {
+  async save(usuario: Usuario): Promise<Usuario> {
     // usuario.created_at = new Date();
     // usuario.updated_at = new Date();
-    const teste = await this.database.usuario.create({
+    const newUser = await this.database.usuario.create({
       data: {
         nome: usuario.nome,
         email: usuario.email,
@@ -39,19 +32,19 @@ export class RepositorioUsuario implements IRepositorioUsuario {
       },
     });
 
-    console.log(teste);
-    // await this.dataBaseCollection.insertOne(usuario);
-    // return usuario;
-    return null;
+    return newUser as Usuario;
   }
 
-  async findUserById(userId: string): Promise<Usuario | null> {
-    return null;
-    // const data = (await this.dataBaseCollection.findOne({
-    //   id: userId,
-    // })) as unknown;
-    // const user = data as Usuario;
-    // return user;
+  async findUserById(userId: string): Promise<Usuario> {
+    const user = await this.database.usuario.findFirst({
+      where: {
+        id: userId,
+      },
+    });
+
+    const userFound = user as Usuario;
+
+    return userFound;
   }
 
   async getConquistas(userId: string): Promise<string[]> {
@@ -63,8 +56,7 @@ export class RepositorioUsuario implements IRepositorioUsuario {
     // return user.conquistas;
   }
 
-  async deleteUser(userId: string): Promise<Usuario | null> {
-    return null;
+  async deleteUser(userId: string): Promise<Usuario> {
     // const data = (await this.dataBaseCollection.deleteOne({
     //   id: userId,
     // })) as unknown;
@@ -72,8 +64,7 @@ export class RepositorioUsuario implements IRepositorioUsuario {
     // return user;
   }
 
-  async updateUser(userId: string, nome: string): Promise<Usuario | null> {
-    return null;
+  async updateUser(userId: string, nome: string): Promise<Usuario> {
     // const data = (await this.dataBaseCollection.findOneAndUpdate(
     //   { id: userId },
     //   { $set: { nome: nome } },
