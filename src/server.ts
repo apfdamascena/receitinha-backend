@@ -8,12 +8,7 @@ import { env } from "./env";
 
     app.listen(env.PORT, async () => {
       const message = `[Server]: Server ready at port ${env.PORT}`;
-
-      const teste = await DatabaseSingleton.getInstance()
-        .getDatabase()
-        .usuario.findMany();
       console.log(message);
-      console.log(teste);
     });
   } catch (error) {
     console.log(`[Receitinha-Server]: failed to connect.`);

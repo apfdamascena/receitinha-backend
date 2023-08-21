@@ -128,6 +128,8 @@ export class Routes {
         id
       );
 
+      console.log(usuario);
+
       const usuarioUpdate = await this.fachada.updateUsuario(usuario);
 
       response.locals = {
