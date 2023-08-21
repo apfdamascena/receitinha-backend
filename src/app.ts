@@ -16,6 +16,7 @@ app.use(helmet());
 
 const routes = new Routes();
 
+app.post("/login", routes.login.bind(routes)); // vai utilizar refresh token?
 app.post("/cadastrar-usuario", routes.cadastrarUsuario.bind(routes));
 app.get("/usuario/:id", routes.readUsuario.bind(routes));
 app.delete("/usuario/:id", routes.deleteUsuario.bind(routes));
@@ -26,10 +27,10 @@ app.use(
   morgan(":method :url :status :res[content-length] - :response-time ms")
 );
 
-app.use(express.urlencoded({ extended: true }));
-
 app.use(notFoundHandler);
 app.use(errorHandler);
 app.use(requestHandler);
+
+app.use(express.urlencoded({ extended: true }));
 
 export default app;

@@ -29,21 +29,22 @@
         "typescript": "3.3.3333"
     },
     "dependencies": {
+        "@prisma/client": "^4.11.0",
         "axios": "^1.4.0",
         "bcryptjs": "^2.4.3",
         "body-parser": "^1.18.1",
         "cors": "^2.8.5",
         "crypto": "^1.0.1",
+        "dayjs": "^1.11.9",
         "dotenv": "^16.0.0",
         "express": "^4.17.1",
         "helmet": "^7.0.0",
-        "@prisma/client": "^4.11.0",
-        "prisma": "^4.11.0",
         "joi": "^17.9.2",
         "jsonwebtoken": "^8.5.1",
         "mongodb": "^5.7.0",
         "morgan": "^1.10.0",
         "node-cron": "^3.0.2",
+        "prisma": "^4.11.0",
         "reflect-metadata": "^0.1.13",
         "uuid": "^9.0.0",
         "zod": "^3.21.4"
@@ -51,7 +52,7 @@
     "scripts": {
         "dev": "./node_modules/.bin/ts-node-dev -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules --no-notify --debug src/server.ts",
         "lint": "eslint ./src --ext .ts",
-        "lint:fix": "eslint ./src --ext .ts --fix", 
+        "lint:fix": "eslint ./src --ext .ts --fix",
         "generate": "yarn prisma generate"
     },
     "main": "index.js",

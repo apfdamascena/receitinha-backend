@@ -1,9 +1,10 @@
 import {
   CadastrarUsuarioControlador,
   ReceitasExternasControlador,
+  AutenticarUsuarioControlador,
 } from "@controladores";
-import { NextFunction, Request, Response } from "express";
 
+import { ILoginResponse } from "./login/ILoginRequestDTO";
 import { IReceitasExternasResponse } from "./receitasExternas/ReceitasExternasDTO";
 import { ICadastroUsuarioResponse } from "./usuario/CadastroUsuarioDTO";
 import { Usuario } from "./usuario/Usuario";
@@ -11,7 +12,8 @@ import { Usuario } from "./usuario/Usuario";
 export class Fachada {
   constructor(
     private cadastrarUsuarioControlador: CadastrarUsuarioControlador,
-    private subsitemaReceitasExternas: ReceitasExternasControlador
+    private subsitemaReceitasExternas: ReceitasExternasControlador,
+    private autenticarUsuarioControlador: AutenticarUsuarioControlador
   ) {}
 
   async cadastrarUsuario(usuario: Usuario): Promise<ICadastroUsuarioResponse> {
@@ -31,5 +33,9 @@ export class Fachada {
 
   async getReceitasExternas(nome: string): Promise<IReceitasExternasResponse> {
     return await this.subsitemaReceitasExternas.getReceitasByName(nome);
+  }
+
+  async authenticate(usuario: Usuario): Promise<ILoginResponse> {
+    return await this.autenticarUsuarioControlador.autentica(usuario);
   }
 }

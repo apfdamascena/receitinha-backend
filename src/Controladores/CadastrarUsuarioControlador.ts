@@ -1,10 +1,4 @@
-import { HttpStatus } from "@http";
-import {
-  CadastroUsuario,
-  ICadastroUsuarioRequest,
-  ICadastroUsuarioResponse,
-  Usuario,
-} from "@usuario";
+import { CadastroUsuario, ICadastroUsuarioResponse, Usuario } from "@usuario";
 
 export class CadastrarUsuarioControlador {
   constructor(private cadastroUsuario: CadastroUsuario) {}
