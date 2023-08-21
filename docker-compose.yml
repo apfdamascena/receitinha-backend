@@ -1,0 +1,65 @@
+version: '3'
+
+services:
+
+  gateway:
+    build: 
+      context: ./packages/Usuario
+      dockerfile: Dockerfile
+    image: node:latest
+    container_name: gateway-microservice
+    restart: always
+    environment:  
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181 
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./packages/gateway:/home/node/app
+      - ./packages/gateway/node_modules:/home/node/app/node_modules
+    command: npm run dev
+    networks:
+      - receitinha_kafkamicro
+  
+  # conquistas: 
+  #   build: 
+  #     context: ./conquistas/estoque
+  #     dockerfile: Dockerfile
+  #   image: node:latest
+  #   container_name: estoque-microservice
+  #   environment:  
+  #     - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181 
+  #   restart: always
+  #   ports:
+  #     - "3002:3002"
+  #   volumes:
+  #     - ./packages/estoque:/home/node/app
+  #     - ./packages/estoque/node_modules:/home/node/app/node_modules
+  #   command: npm run dev
+  #   depends_on:
+  #     - gateway
+  #   networks:
+  #     - receitinha_kafkamicro
+
+  # produto: 
+  #   build: 
+  #     context: ./packages/produto
+  #     dockerfile: Dockerfile
+  #   image: node:latest
+  #   container_name: produto-microservice
+  #   environment:  
+  #     - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181 
+  #   restart: always
+  #   ports:
+  #     - "3003:3003"
+  #   volumes:
+  #     - ./packages/produto:/home/node/app
+  #     - ./packages/produto/node_modules:/home/node/app/node_modules
+  #   command: npm run dev
+  #   depends_on:
+  #     - gateway
+  #   networks:
+  #     - receitinha_kafkamicro
+
+networks:
+  sinvemicroservices_kafkamicro:
+    external: true
