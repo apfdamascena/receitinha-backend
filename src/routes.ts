@@ -207,7 +207,8 @@ export class Routes {
       const usuario = new Usuario({
         email,
         senha,
-        nome: "",
+        nome: "", // preguicinha
+        conquistas: [], // preguiça dms também
       });
 
       const { token } = await this.fachada.authenticate(usuario);
