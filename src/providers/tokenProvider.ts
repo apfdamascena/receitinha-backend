@@ -1,10 +1,12 @@
 import { env } from "@env";
+import dayjs from "dayjs";
 import { sign } from "jsonwebtoken";
 
 import { ITokenProvider } from "./ITokenProvider";
+import { Token } from "./token";
 
 export class TokenProvider implements ITokenProvider {
-  create(userId: string): string {
+  create(userId: string): Token {
     const now = new Date();
 
     const payload = {
@@ -16,6 +18,11 @@ export class TokenProvider implements ITokenProvider {
       expiresIn: "3600s",
     });
 
-    return token;
+    const expiresIn = dayjs().add(3600, "seconds").unix();
+
+    return {
+      token,
+      expiresIn,
+    };
   }
 }

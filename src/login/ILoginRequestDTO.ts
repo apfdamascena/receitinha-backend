@@ -1,4 +1,5 @@
 import Joi from "joi";
+import { Token } from "src/providers/token";
 
 export interface ILoginRequest {
   email: string;
@@ -6,7 +7,7 @@ export interface ILoginRequest {
 }
 
 export interface ILoginResponse {
-  token: string;
+  token: Token;
 }
 
 export const LoginSchema = Joi.object({

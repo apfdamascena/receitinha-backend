@@ -78,6 +78,7 @@ export class CadastroUsuario {
     if (!isPasswordMatch) throw new Error("Erro nas credenciais");
 
     const token = this.tokenProvider.create(foundUser.id);
+
     return { token };
   }
 }
