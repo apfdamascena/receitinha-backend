@@ -1,11 +1,17 @@
-import { genSaltSync, hashSync } from "bcryptjs";
+import { env } from "@env";
+import { compare, genSaltSync, hashSync } from "bcryptjs";
+import { sign } from "jsonwebtoken";
+import { ILoginResponse } from "src/login/ILoginRequestDTO";
 
 import { ICadastroUsuarioResponse } from "./CadastroUsuarioDTO";
 import { IRepositorioUsuario } from "./IRepositorioUsuario";
 import { Usuario } from "./Usuario";
 
 export class CadastroUsuario {
-  constructor(private repositorioUsuario: IRepositorioUsuario) {}
+  constructor(
+    private repositorioUsuario: IRepositorioUsuario,
+    private tokenProvider: ITokenProvider
+  ) {}
 
   async cadastrarUsuario(input: Usuario): Promise<ICadastroUsuarioResponse> {
     const { email, nome, senha } = input;
@@ -52,5 +58,27 @@ export class CadastroUsuario {
     const newUsuario = await this.repositorioUsuario.updateUser(id, nome);
 
     return { usuario: newUsuario };
+  }
+
+  async autenticaUsuario(usuario: Usuario): Promise<ILoginResponse> {
+    const { email, senha } = usuario;
+
+    if (!senha) throw new Error("sem senha");
+
+    const foundUser = await this.repositorioUsuario.findByEmail(email);
+
+    if (!foundUser) throw new Error("Erro nas credenciais");
+
+    const { senha: senhasUsuarioEncontrado } = foundUser;
+
+    const isPasswordMatch = await compare(
+      senha,
+      senhasUsuarioEncontrado || "-1"
+    );
+
+    if (!isPasswordMatch) throw new Error("Erro nas credenciais");
+
+    const token = this.tokenProvider.create(foundUser.id);
+    return { token };
   }
 }

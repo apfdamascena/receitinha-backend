@@ -9,6 +9,7 @@ const variables = z.object({
   DATABASE_URL: z.string(),
   DATABASE_NAME: z.string(),
   RECEITAS_API_KEY: z.string(),
+  JWT_SECRET_KEY: z.string(),
 });
 
 const ENV_VARIABLES = variables.safeParse(process.env);
