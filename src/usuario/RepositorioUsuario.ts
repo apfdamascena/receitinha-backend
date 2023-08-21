@@ -28,7 +28,6 @@ export class RepositorioUsuario implements IRepositorioUsuario {
         email: usuario.email,
         senha: password,
         conquistas: usuario.conquistas,
-        id: usuario.id,
       },
     });
 

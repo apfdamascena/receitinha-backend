@@ -87,6 +87,11 @@ export class Routes {
 
       await this.fachada.deleteUsuario(usuarioId);
 
+      response.locals = {
+        ...response.locals,
+        data: "usuario deletado",
+      };
+
       next();
     } catch (error) {
       if (error instanceof Error)
@@ -94,6 +99,8 @@ export class Routes {
           status: HttpStatus.BAD_REQUEST,
           message: error.message,
         });
+
+      console.log(error);
     }
   }
 
