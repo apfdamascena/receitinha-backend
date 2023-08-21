@@ -54,6 +54,9 @@
         ],
         "@controlerFactories": [
          "./src/controladoresFactories/index.ts"
+        ],
+        "@providers": [
+         "./src/providers/index.ts"
         ]
       },
        "typeRoots": [

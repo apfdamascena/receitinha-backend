@@ -1,6 +1,5 @@
-import { env } from "@env";
+import { ITokenProvider } from "@providers";
 import { compare, genSaltSync, hashSync } from "bcryptjs";
-import { sign } from "jsonwebtoken";
 import { ILoginResponse } from "src/login/ILoginRequestDTO";
 
 import { ICadastroUsuarioResponse } from "./CadastroUsuarioDTO";

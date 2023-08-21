@@ -1,5 +1,6 @@
 import { AutenticarUsuarioControlador } from "@controladores";
 import DatabaseSingleton from "@database";
+import { TokenProvider } from "@providers";
 import { CadastroUsuario, RepositorioUsuario } from "@usuario";
 
 export class AutenticaUsuarioFactory {
@@ -7,7 +8,11 @@ export class AutenticaUsuarioFactory {
     const usuarioRepository = new RepositorioUsuario(
       DatabaseSingleton.getInstance().getDatabase()
     );
-    const cadastroUsuario = new CadastroUsuario(usuarioRepository);
+    const tokenProvider = new TokenProvider();
+    const cadastroUsuario = new CadastroUsuario(
+      usuarioRepository,
+      tokenProvider
+    );
     const controlador = new AutenticarUsuarioControlador(cadastroUsuario);
     return controlador;
   }
