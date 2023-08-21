@@ -22,8 +22,6 @@ export class RepositorioUsuario implements IRepositorioUsuario {
   }
 
   async save(usuario: Usuario): Promise<Usuario> {
-    // usuario.created_at = new Date();
-    // usuario.updated_at = new Date();
     const newUser = await this.database.usuario.create({
       data: {
         nome: usuario.nome,
@@ -48,7 +46,11 @@ export class RepositorioUsuario implements IRepositorioUsuario {
   }
 
   async getConquistas(userId: string): Promise<string[]> {
-    return [];
+    const user = await this.database.usuario.findFirst({
+      where: {
+        id: userId,
+      },
+    });
     // const data = (await this.dataBaseCollection.findOne({
     //   id: userId,
     // })) as unknown;
