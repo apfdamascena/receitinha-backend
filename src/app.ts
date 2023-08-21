@@ -16,7 +16,7 @@ app.use(helmet());
 
 const routes = new Routes();
 
-app.post("/login", routes.login.bind(routes));
+app.post("/login", routes.login.bind(routes)); // vai utilizar refresh token?
 app.post("/cadastrar-usuario", routes.cadastrarUsuario.bind(routes));
 app.get("/usuario/:id", routes.readUsuario.bind(routes));
 app.delete("/usuario/:id", routes.deleteUsuario.bind(routes));
