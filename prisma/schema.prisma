@@ -16,5 +16,5 @@ model Usuario {
   nome String
   senha String
   email String
-  conquistas String[]
+  conquistas String[] 
 }

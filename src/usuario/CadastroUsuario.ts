@@ -1,9 +1,6 @@
 import { genSaltSync, hashSync } from "bcryptjs";
 
-import {
-  ICadastroUsuarioRequest,
-  ICadastroUsuarioResponse,
-} from "./CadastroUsuarioDTO";
+import { ICadastroUsuarioResponse } from "./CadastroUsuarioDTO";
 import { IRepositorioUsuario } from "./IRepositorioUsuario";
 import { Usuario } from "./Usuario";
 
