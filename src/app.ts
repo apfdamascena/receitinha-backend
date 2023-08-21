@@ -19,7 +19,7 @@ const routes = new Routes();
 app.post("/cadastrar-usuario", routes.cadastrarUsuario.bind(routes));
 app.get("/usuario/:id", routes.readUsuario.bind(routes));
 app.delete("/usuario/:id", routes.deleteUsuario.bind(routes));
-app.patch("/usuario", routes.updateUsuario.bind(routes));
+app.patch("/usuario/:id", routes.updateUsuario.bind(routes));
 app.get("/receitas-externas", routes.getReceitasExternas.bind(routes));
 
 app.use(

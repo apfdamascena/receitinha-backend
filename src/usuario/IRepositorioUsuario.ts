@@ -5,6 +5,6 @@ export interface IRepositorioUsuario {
   save(usuario: Usuario): Promise<Usuario>;
   findUserById(userId: string): Promise<Usuario>;
   getConquistas(userId: string): Promise<Array<string>>;
-  deleteUser(userId: string): Promise<Usuario>;
+  deleteUser(userId: string): Promise<void>;
   updateUser(userId: string, nome: string): Promise<Usuario>;
 }

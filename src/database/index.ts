@@ -1,20 +1,18 @@
-import { env } from "@env";
-import { Db, MongoClient } from "mongodb";
+import { PrismaClient } from "@prisma/client";
 
 class DatabaseSingleton {
   private static instance: DatabaseSingleton | null = null;
-  private database: Db;
+  private database: PrismaClient;
 
   private constructor() {
-    const client = new MongoClient(env.URL_DATABASE);
-    this.database = client.db(env.DATABASE_NAME);
+    this.database = new PrismaClient();
   }
 
-  getDatabase() {
+  getDatabase(): PrismaClient {
     return this.database;
   }
 
-  static getInstance() {
+  static getInstance(): DatabaseSingleton {
     if (!DatabaseSingleton.instance) {
       DatabaseSingleton.instance = new DatabaseSingleton();
     }
