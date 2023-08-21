@@ -1,10 +1,12 @@
 import app from "./app";
-import { DatabaseConnection } from "./database";
+import DatabaseSingleton from "./database";
 import { env } from "./env";
 
 (async () => {
   try {
-    app.listen(env.PORT, env.IPV4, async () => {
+    console.log("[Database]: connected");
+
+    app.listen(env.PORT, async () => {
       const message = `[Server]: Server ready at port ${env.PORT}`;
       console.log(message);
     });

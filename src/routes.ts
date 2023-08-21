@@ -53,7 +53,6 @@ export class Routes {
           status: HttpStatus.BAD_REQUEST,
           message: error.message,
         });
-      console.log(error);
     }
   }
 
@@ -80,7 +79,6 @@ export class Routes {
           status: HttpStatus.BAD_REQUEST,
           message: error.message,
         });
-      console.log(error);
     }
   }
 
@@ -96,6 +94,11 @@ export class Routes {
 
       await this.fachada.deleteUsuario(usuarioId);
 
+      response.locals = {
+        ...response.locals,
+        data: "usuario deletado",
+      };
+
       next();
     } catch (error) {
       if (error instanceof Error)
@@ -103,6 +106,7 @@ export class Routes {
           status: HttpStatus.BAD_REQUEST,
           message: error.message,
         });
+
       console.log(error);
     }
   }
@@ -118,7 +122,7 @@ export class Routes {
         ...request.body,
       };
 
-      const { id, nome, email, senha } =
+      const { id, nome, email, senha, conquistas } =
         parseType<ICadastroUsuarioRequest>(body);
 
       const usuario = new Usuario(
@@ -126,9 +130,12 @@ export class Routes {
           nome,
           email,
           senha,
+          conquistas,
         },
         id
       );
+
+      console.log(usuario);
 
       const usuarioUpdate = await this.fachada.updateUsuario(usuario);
 
@@ -144,7 +151,6 @@ export class Routes {
           status: HttpStatus.BAD_REQUEST,
           message: error.message,
         });
-      console.log(error);
     }
   }
 
@@ -175,7 +181,6 @@ export class Routes {
           status: HttpStatus.BAD_REQUEST,
           message: error.message,
         });
-      console.log(error);
     }
   }
 

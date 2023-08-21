@@ -7,6 +7,7 @@ export interface ICadastroUsuarioRequest {
   nome: string;
   senha: string;
   email: string;
+  conquistas: string[];
 }
 
 export interface ICadastroUsuarioResponse {

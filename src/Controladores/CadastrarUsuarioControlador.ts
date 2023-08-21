@@ -1,3 +1,4 @@
+import { HttpStatus } from "@http";
 import { CadastroUsuario, ICadastroUsuarioResponse, Usuario } from "@usuario";
 
 export class CadastrarUsuarioControlador {
