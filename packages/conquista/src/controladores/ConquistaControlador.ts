@@ -1,14 +1,34 @@
 import { CadastroConquista } from "src/conquista/CadastroConquista";
 import { ICadastroConquistaResponse } from "src/conquista/CadastroConquistaDTO";
 import { Conquista } from "src/conquista/Conquista";
+import { IMessagingAdapter } from "src/infra/kafka-message-adapter";
 
 // import { Conquista } from "../conquista/Conquista";
 
 export class ConquistaControlador {
-  constructor(private cadastroConquista: CadastroConquista) {}
+  constructor(
+    private cadastroConquista: CadastroConquista,
+    private kafka: IMessagingAdapter
+  ) {}
 
-  async getConquistaId(receitaId: string): Promise<ICadastroConquistaResponse> {
-    return await this.cadastroConquista.desbloquearConquista(receitaId);
+  async desbloqueiaConquista(
+    receitaId: string,
+    userId: string
+  ): Promise<ICadastroConquistaResponse> {
+    const conquistas = await this.cadastroConquista.desbloquearConquista(
+      receitaId
+    );
+
+    const { conquistaId } = conquistas;
+
+    console.log(`conquista id: ${conquistaId}`);
+
+    this.kafka.sendMessage("conquistas.desbloqueia-conquistas", {
+      conquistaId,
+      userId,
+    });
+
+    return conquistas;
   }
   async createConquista(
     conquista: Conquista

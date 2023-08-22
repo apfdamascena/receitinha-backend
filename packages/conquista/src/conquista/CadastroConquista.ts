@@ -1,3 +1,8 @@
+import {
+  IMessagingAdapter,
+  KafkaMessagingAdapter,
+} from "src/infra/kafka-message-adapter";
+
 import { ICadastroConquistaResponse } from "./CadastroConquistaDTO";
 import { Conquista } from "./Conquista";
 import { IRepositorioConquista } from "./IRepositorioConquista";
@@ -11,6 +16,7 @@ export class CadastroConquista {
     const conquista = await this.repositorioConquista.findConquistaBy(
       receitaId
     );
+
     const conquistaId = conquista.id;
 
     return { conquistaId };

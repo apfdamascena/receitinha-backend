@@ -23,8 +23,10 @@ export class Routes {
   ): Promise<void> {
     try {
       const { usuarioId, receitaId } = parseType<ICadastroConquistaRequest>(
-        request.params
+        request.query
       );
+
+      console.log(usuarioId, receitaId);
 
       const conquista = await this.fachada.desbloquearConquista(
         receitaId,

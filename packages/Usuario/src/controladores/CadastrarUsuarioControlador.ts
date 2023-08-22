@@ -21,4 +21,11 @@ export class CadastrarUsuarioControlador {
     const newUsuario = await this.cadastroUsuario.updateUsuario(usuario);
     return newUsuario;
   }
+
+  async adicionaConquistaAoUsuario(
+    conquistaId: string,
+    userId: string
+  ): Promise<void> {
+    await this.cadastroUsuario.adicionaConquistaAoUsuario(conquistaId, userId);
+  }
 }

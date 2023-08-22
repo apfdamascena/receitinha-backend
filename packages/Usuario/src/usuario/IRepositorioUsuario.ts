@@ -1,3 +1,5 @@
+import { ProducerEvents } from "kafkajs";
+
 import { Usuario } from "./Usuario";
 
 export interface IRepositorioUsuario {
@@ -7,4 +9,5 @@ export interface IRepositorioUsuario {
   getConquistas(userId: string): Promise<Array<string>>;
   deleteUser(userId: string): Promise<void>;
   updateUser(userId: string, nome: string): Promise<Usuario>;
+  adicionaConquistaAUsuario(userId: string, conquistaId: string): Promise<void>;
 }

@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { UserArgs } from "@prisma/client/runtime";
 
 import { IRepositorioUsuario } from "./IRepositorioUsuario";
 import { Usuario } from "./Usuario";
@@ -7,6 +8,32 @@ export class RepositorioUsuario implements IRepositorioUsuario {
   prisma: PrismaClient;
 
   constructor(private database: PrismaClient) {}
+  async adicionaConquistaAUsuario(
+    userId: string,
+    conquistaId: string
+  ): Promise<void> {
+    const userFound = await this.database.usuario.findFirst({
+      where: {
+        id: userId,
+      },
+    });
+
+    const user = userFound as Usuario;
+
+    user.conquistas.push(conquistaId);
+    const { conquistas } = user;
+
+    await this.database.usuario.update({
+      where: {
+        id: user.id,
+      },
+      data: {
+        conquistas,
+      },
+    });
+
+    console.log("passou");
+  }
 
   async findByEmail(email: string): Promise<Usuario> {
     const user = await this.database.usuario.findFirst({

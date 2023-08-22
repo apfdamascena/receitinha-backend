@@ -8,8 +8,10 @@ export class Fachada {
     receitaId: string,
     usuarioId: string
   ): Promise<ICadastroConquistaResponse> {
-    //colocar a chamada para outro local aqui
-    return await this.conquistasControlador.getConquistaId(receitaId);
+    return await this.conquistasControlador.desbloqueiaConquista(
+      receitaId,
+      usuarioId
+    );
   }
 
   async cadastrarConquista(

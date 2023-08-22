@@ -81,4 +81,15 @@ export class CadastroUsuario {
 
     return { token };
   }
+
+  async adicionaConquistaAoUsuario(
+    conquistaId: string,
+    userId: string
+  ): Promise<void> {
+    console.log("entrou aqui");
+    await this.repositorioUsuario.adicionaConquistaAUsuario(
+      userId,
+      conquistaId
+    );
+  }
 }

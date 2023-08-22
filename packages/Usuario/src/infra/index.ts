@@ -1,16 +1,11 @@
+import { CadastroUsuarioFactory } from "@controlerFactories";
+
 import { kafka } from "./kafka";
 
-// interface ProdutoNewProduto {
-//   produto: {
-//     id: string;
-//     title: string;
-//   };
-
-//   fornecedor: {
-//     id: string;
-//     nome: string;
-//   };
-// }
+interface IDesbloqueiaReceita {
+  conquistaId: string;
+  usuarioId: string;
+}
 
 async function main() {
   const consumer = kafka.consumer({
@@ -19,11 +14,22 @@ async function main() {
   });
 
   await consumer.connect();
-  await consumer.subscribe({ topic: "conquistas.desbloquer-conquista" });
+  await consumer.subscribe({ topic: "conquistas.desbloqueia-conquistas" });
 
   await consumer.run({
     eachMessage: async ({ message }) => {
-      console.log(message);
+      if (!message.value) return;
+
+      const messageToJson = message.value.toString();
+
+      if (!messageToJson) return;
+
+      const desbloqueia: IDesbloqueiaReceita = JSON.parse(messageToJson);
+      const controller = CadastroUsuarioFactory.create();
+      controller.adicionaConquistaAoUsuario(
+        desbloqueia.conquistaId,
+        desbloqueia.usuarioId
+      );
     },
   });
 }
