@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+
+  app:
+    build: .
+    image: node:latest
+    container_name: receitinha-aps
+    restart: always
+    ports:
+      - "3004:3004"
+    volumes:
+      - ./packages/gateway:/home/node/app
+      - ./packages/gateway/node_modules:/home/node/app/node_modules
+    command: yarn dev

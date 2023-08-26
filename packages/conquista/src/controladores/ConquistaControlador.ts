@@ -3,8 +3,6 @@ import { ICadastroConquistaResponse } from "src/conquista/CadastroConquistaDTO";
 import { Conquista } from "src/conquista/Conquista";
 import { IMessagingAdapter } from "src/infra/kafka-message-adapter";
 
-// import { Conquista } from "../conquista/Conquista";
-
 export class ConquistaControlador {
   constructor(
     private cadastroConquista: CadastroConquista,
