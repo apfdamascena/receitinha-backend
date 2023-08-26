@@ -18,6 +18,5 @@ model Receita {
   dificuldade String
   ingredientes String[]
   passos String
-  conquistaId String?
   imagem String
 }

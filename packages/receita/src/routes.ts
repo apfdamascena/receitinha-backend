@@ -29,7 +29,6 @@ export class Routes {
         dificuldade,
         ingredientes,
         passos,
-        conquistaId,
       } = parseType<ICadastroReceitaRequest>(request.body);
 
       const novaReceita = new Receita({
@@ -40,7 +39,6 @@ export class Routes {
         dificuldade,
         ingredientes,
         passos,
-        conquistaId,
       });
       const conquista = await this.fachada.cadastrarReceita(novaReceita);
 

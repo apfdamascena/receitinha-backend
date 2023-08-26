@@ -6,7 +6,6 @@ export class Receita {
   dificuldade: string;
   ingredientes: [string];
   passos: string;
-  conquistaId?: string;
   imagem: string;
 
   constructor(props: Receita) {
