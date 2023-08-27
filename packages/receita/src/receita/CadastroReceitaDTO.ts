@@ -9,7 +9,6 @@ export interface ICadastroReceitaRequest {
   dificuldade: string;
   ingredientes: [string];
   passos: string;
-  conquistaId?: string;
   imagem: string;
   id: string;
 }
@@ -18,9 +17,3 @@ export interface ICadastroReceitaResponse {
   receita?: Receita;
   receitas?: [Receita];
 }
-
-// export const ConquistaSchema = Joi.object({
-//   titulo: Joi.string(),
-//   imagemDesbloqueada: Joi.string(),
-//   imagemBloqueada: Joi.string(),
-// });

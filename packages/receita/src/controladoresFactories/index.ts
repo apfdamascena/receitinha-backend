@@ -1,3 +1,3 @@
-import { CadastroConquistaFactory } from "./CadastroReceitaFactory";
+import { CadastroReceitaFactory } from "./CadastroReceitaFactory";
 
-export { CadastroConquistaFactory };
+export { CadastroReceitaFactory };
