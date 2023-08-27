@@ -102,4 +102,28 @@ export class Routes {
         });
     }
   }
+
+  async deleteReceita(
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ): Promise<void> {
+    try {
+      const { id } = parseType<ICadastroReceitaRequest>(request.params);
+
+      const usuario = await this.fachada.deleteReceita(id);
+
+      response.locals = {
+        ...response.locals,
+        data: usuario,
+      };
+      next();
+    } catch (error) {
+      if (error instanceof Error)
+        next({
+          status: HttpStatus.BAD_REQUEST,
+          message: error.message,
+        });
+    }
+  }
 }

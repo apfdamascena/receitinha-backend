@@ -38,4 +38,16 @@ export class RepositorioReceita implements IRepositorioReceita {
     const receitas = await this.database.receita.findMany();
     return receitas as [Receita];
   }
+
+  async deleteReceitaBy(id: string): Promise<Receita> {
+    const receita = await this.database.receita.delete({
+      where: {
+        id,
+      },
+    });
+
+    const receitaFound = receita as Receita;
+
+    return receitaFound;
+  }
 }

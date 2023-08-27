@@ -16,7 +16,9 @@ app.use(helmet());
 
 const routes = new Routes();
 
-app.post("/cadastrar-receita", routes.cadastrarReceita.bind(routes));
+app.post("/receita", routes.cadastrarReceita.bind(routes));
+app.delete("/receita/:id", routes.deleteReceita.bind(routes));
+
 app.get("/receita/:id", routes.readReceita.bind(routes));
 app.get("/receitas", routes.readAllReceitas.bind(routes));
 

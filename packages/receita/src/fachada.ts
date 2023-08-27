@@ -15,4 +15,8 @@ export class Fachada {
   async getAllReceitas(): Promise<ICadastroReceitaResponse> {
     return await this.receitaControlador.getAllReceitas();
   }
+
+  async deleteReceita(id: string): Promise<ICadastroReceitaResponse> {
+    return await this.receitaControlador.deleteReceita(id);
+  }
 }

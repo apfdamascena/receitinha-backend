@@ -17,4 +17,8 @@ export class ReceitaControlador {
   async getAllReceitas(): Promise<ICadastroReceitaResponse> {
     return await this.cadastroReceita.getAllReceitas();
   }
+
+  async deleteReceita(id: string): Promise<ICadastroReceitaResponse> {
+    return await this.cadastroReceita.deleteReceita(id);
+  }
 }

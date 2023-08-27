@@ -39,4 +39,9 @@ export class CadastroReceita {
     const receitas = await this.repositorioReceita.findAllReceitas();
     return { receitas };
   }
+
+  async deleteReceita(id: string): Promise<ICadastroReceitaResponse> {
+    const receita = await this.repositorioReceita.deleteReceitaBy(id);
+    return { receita };
+  }
 }
