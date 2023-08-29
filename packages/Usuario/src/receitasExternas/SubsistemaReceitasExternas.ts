@@ -14,8 +14,6 @@ export class SubsistemaReceitasExternas implements ISubsistemaReceitasExternas {
         return receitas;
       });
 
-      console.log(receitas);
-
       return receitas;
     } catch (error) {
       console.log(error);

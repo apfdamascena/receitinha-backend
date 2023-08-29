@@ -31,6 +31,7 @@ export class RepositorioUsuario implements IRepositorioUsuario {
         conquistas,
       },
     });
+
   }
 
   async findByEmail(email: string): Promise<Usuario> {
