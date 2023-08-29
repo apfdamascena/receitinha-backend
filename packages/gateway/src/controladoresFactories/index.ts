@@ -1,5 +1,3 @@
 import { AutenticaUsuarioFactory } from "./AutenticaUsuarioFactory";
 
-export {
-    AutenticaUsuarioFactory
-}
+export { AutenticaUsuarioFactory };

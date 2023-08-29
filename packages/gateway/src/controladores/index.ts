@@ -1,5 +1,3 @@
 import { AutenticarUsuarioControlador } from "./AutenticarUsuarioControlador";
 
-export {
-    AutenticarUsuarioControlador
-}
+export { AutenticarUsuarioControlador };

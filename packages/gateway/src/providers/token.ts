@@ -3,7 +3,6 @@ export class Token {
   public expiresIn: number;
 
   constructor(props: Token) {
-    this.token = props.token
-    this.expiresIn = props.expiresIn
+    Object.assign(this, props);
   }
 }
