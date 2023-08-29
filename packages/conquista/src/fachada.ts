@@ -17,8 +17,6 @@ export class Fachada {
   async cadastrarConquista(
     conquista: Conquista
   ): Promise<ICadastroConquistaResponse> {
-    console.log("oi");
-
     return await this.conquistasControlador.createConquista(conquista);
   }
 }

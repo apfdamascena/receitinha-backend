@@ -32,7 +32,6 @@ export class RepositorioUsuario implements IRepositorioUsuario {
       },
     });
 
-    console.log("passou");
   }
 
   async findByEmail(email: string): Promise<Usuario> {
