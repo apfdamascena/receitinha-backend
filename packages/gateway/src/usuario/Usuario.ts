@@ -13,6 +13,8 @@ export class Usuario {
 
   constructor(props: Omit<Usuario, "id">, id?: string) {
     Object.assign(this, props);
+    
+
     this.id = id ? id : uuid();
   }
 }

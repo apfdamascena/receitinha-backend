@@ -11,7 +11,8 @@ export class HttpException extends Error {
 
   constructor(content: HttpExceptionContent) {
     super(content.message);
-    Object.assign(this, content);
+    this.message = content.message
+    this.status = content.status
   }
 }
 
