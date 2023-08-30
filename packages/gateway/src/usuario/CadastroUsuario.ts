@@ -79,8 +79,7 @@ export class CadastroUsuario {
 
     const token = this.tokenProvider.create(foundUser.id);
 
-
-    return { token };
+    return { token: token, id: foundUser.id};
   }
 
   async adicionaConquistaAoUsuario(

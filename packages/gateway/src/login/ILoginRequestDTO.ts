@@ -8,6 +8,7 @@ export interface ILoginRequest {
 
 export interface ILoginResponse {
   token: Token;
+  id: String;
 }
 
 export const LoginSchema = Joi.object({
