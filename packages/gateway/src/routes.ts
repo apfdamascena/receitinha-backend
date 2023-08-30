@@ -24,12 +24,13 @@ export class Routes {
   ): Promise<void> {
     try {
       const body = parseType<ILoginRequest>(request.body);
-
+    
       const { value: input, error } = LoginSchema.validate(body, {
         abortEarly: true,
       });
 
       const { email, senha } = input;
+
 
       if (error)
         next({

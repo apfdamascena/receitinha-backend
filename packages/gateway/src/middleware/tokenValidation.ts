@@ -18,6 +18,7 @@ export const authorize = async (request: Request, response: Response, next: Next
   try {
     const { authorization } = request.headers;
 
+
     if (!authorization) throw new NotAuthenticatedError();
 
     const token = authorization.replace("Bearer", "").trim();

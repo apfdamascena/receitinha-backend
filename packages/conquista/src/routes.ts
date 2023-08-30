@@ -26,8 +26,6 @@ export class Routes {
         request.query
       );
 
-      console.log(usuarioId, receitaId);
-
       const conquista = await this.fachada.desbloquearConquista(
         receitaId,
         usuarioId
