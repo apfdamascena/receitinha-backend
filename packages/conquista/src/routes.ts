@@ -25,6 +25,7 @@ export class Routes {
       const { usuarioId, receitaId } = parseType<ICadastroConquistaRequest>(
         request.query
       );
+      console.log(usuarioId);
 
       const conquista = await this.fachada.desbloquearConquista(
         receitaId,
