@@ -9,7 +9,7 @@ export const usuarioProxy = httpProxy('http://localhost:3002/', {
 
 export const conquistaProxy = httpProxy('http://localhost:3003/', {
   proxyReqPathResolver: req =>  {
-    return url.parse(req.baseUrl).path || ""
+    return ((url.parse(req.originalUrl).pathname || "") + (url.parse(req.originalUrl).search || ""))
   }
 });
 
