@@ -33,4 +33,9 @@ export class ConquistaControlador {
   ): Promise<ICadastroConquistaResponse> {
     return await this.cadastroConquista.cadastrarConquista(conquista);
   }
+
+  async getConquista(id: string): Promise<ICadastroConquistaResponse> {
+    const conquista = await this.cadastroConquista.getConquista(id);
+    return conquista;
+  }
 }

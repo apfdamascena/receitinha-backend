@@ -30,4 +30,16 @@ export class RepositorioConquista implements IRepositorioConquista {
     });
     return newConquista as Conquista;
   }
+
+  async findConquista(id: string): Promise<Conquista> {
+    const conquista = await this.database.conquista.findFirst({
+      where: {
+        id,
+      },
+    });
+
+    const conquistaFound = conquista as Conquista;
+
+    return conquistaFound;
+  }
 }

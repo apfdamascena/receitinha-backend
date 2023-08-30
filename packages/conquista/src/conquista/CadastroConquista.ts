@@ -37,4 +37,9 @@ export class CadastroConquista {
     const conquista = await this.repositorioConquista.save(novaConquista);
     return { conquista };
   }
+
+  async getConquista(id: string): Promise<ICadastroConquistaResponse> {
+    const conquista = await this.repositorioConquista.findConquista(id);
+    return { conquista };
+  }
 }

@@ -14,7 +14,7 @@ export class CadastroUsuario {
 
   async cadastrarUsuario(input: Usuario): Promise<ICadastroUsuarioResponse> {
     const { email, nome, senha } = input;
-
+    console.log("asq", email);
     const isUsuarioAlreadyExists = await this.repositorioUsuario.findByEmail(
       email
     );

@@ -19,4 +19,8 @@ export class Fachada {
   ): Promise<ICadastroConquistaResponse> {
     return await this.conquistasControlador.createConquista(conquista);
   }
+
+  async getConquista(id: string): Promise<ICadastroConquistaResponse> {
+    return await this.conquistasControlador.getConquista(id);
+  }
 }

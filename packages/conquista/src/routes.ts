@@ -78,4 +78,28 @@ export class Routes {
         });
     }
   }
+
+  async getConquista(
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ): Promise<void> {
+    try {
+      const { id } = parseType<ICadastroConquistaRequest>(request.params);
+
+      const usuario = await this.fachada.getConquista(id);
+
+      response.locals = {
+        ...response.locals,
+        data: usuario,
+      };
+      next();
+    } catch (error) {
+      if (error instanceof Error)
+        next({
+          status: HttpStatus.BAD_REQUEST,
+          message: error.message,
+        });
+    }
+  }
 }

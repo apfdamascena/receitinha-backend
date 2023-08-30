@@ -19,6 +19,7 @@ const routes = new Routes();
 
 app.get("/desbloquear-conquista", routes.desbloquearReceita.bind(routes));
 app.post("/criar-conquista", routes.cadastrarConquista.bind(routes));
+app.get("/get-conquista/:id", routes.getConquista.bind(routes));
 
 app.use(
   morgan(":method :url :status :res[content-length] - :response-time ms")

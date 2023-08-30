@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express'
 import cors from "cors" 
 import httpProxy from "express-http-proxy"
-import { receitaProxy, usuarioProxy} from './proxy';
+import { receitaProxy, usuarioProxy, conquistaProxy} from './proxy';
 import url from "url"
 import { Routes } from "./routes"
 import { errorHandler, notFoundHandler, requestHandler } from '@middleware'
@@ -12,11 +12,15 @@ app.use(express.json())
 app.use(cors())
 const routes = new Routes();
 
-app.use("/desbloquear-conquista", authorize, httpProxy("http://localhost:3003/desbloquear-conquista"));
+app.post("/login", routes.login.bind(routes));
+
+app.use("/desbloquear-conquista", authorize, conquistaProxy);
+app.use("/get-conquista/:id", authorize, conquistaProxy);
 
 app.use('/cadastrar-usuario', usuarioProxy);
 app.use('/receitas-externas', authorize, usuarioProxy);
-app.post("/login", routes.login.bind(routes));
+app.use("/get-conquista", authorize, usuarioProxy);
+app.use("/usuario/:id", authorize, usuarioProxy);
 
 
 app.use('/receita/:id', authorize, receitaProxy);

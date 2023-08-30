@@ -8,6 +8,7 @@ export interface ICadastroConquistaRequest {
   titulo: string;
   imagemDesbloqueada: string;
   imagemBloqueada: string;
+  id: string;
 }
 
 export interface ICadastroConquistaResponse {
