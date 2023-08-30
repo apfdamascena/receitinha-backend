@@ -45,11 +45,11 @@ export class Routes {
         conquistas: [], // preguiça dms também
       });
 
-      const { token } = await this.fachada.authenticate(usuario);
+      const { token, id } = await this.fachada.authenticate(usuario);
 
       response.locals = {
         ...response.locals,
-        data: token,
+        data: {token, id},
       };
 
       next();

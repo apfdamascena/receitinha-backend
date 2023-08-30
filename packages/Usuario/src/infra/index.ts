@@ -4,7 +4,7 @@ import { kafka } from "./kafka";
 
 interface IDesbloqueiaReceita {
   conquistaId: string;
-  usuarioId: string;
+  userId: string;
 }
 
 async function main() {
@@ -21,14 +21,13 @@ async function main() {
       if (!message.value) return;
 
       const messageToJson = message.value.toString();
-
       if (!messageToJson) return;
 
       const desbloqueia: IDesbloqueiaReceita = JSON.parse(messageToJson);
       const controller = CadastroUsuarioFactory.create();
       controller.adicionaConquistaAoUsuario(
         desbloqueia.conquistaId,
-        desbloqueia.usuarioId
+        desbloqueia.userId
       );
     },
   });

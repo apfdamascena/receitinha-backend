@@ -22,9 +22,6 @@ export class RepositorioUsuario implements IRepositorioUsuario {
 
     user.conquistas.push(conquistaId);
     const { conquistas } = user;
-    console.log(user);
-
-    console.log(conquistas);
     await this.database.usuario.update({
       where: {
         id: user.id,

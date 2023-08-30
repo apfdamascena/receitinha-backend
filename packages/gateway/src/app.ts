@@ -15,7 +15,7 @@ const routes = new Routes();
 
 app.post("/login", routes.login.bind(routes));
 
-app.use("/desbloquear-conquista", authorize, conquistaProxy);
+app.use("/desbloquear-conquista", conquistaProxy);
 app.use("/get-conquista/:id", authorize, conquistaProxy);
 
 app.use('/cadastrar-usuario', usuarioProxy);
