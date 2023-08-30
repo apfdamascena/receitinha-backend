@@ -4,8 +4,9 @@ import httpProxy from "express-http-proxy"
 import { receitaProxy, usuarioProxy, conquistaProxy} from './proxy';
 import url from "url"
 import { Routes } from "./routes"
-import { errorHandler, notFoundHandler, requestHandler } from '@middleware'
-import { authorize } from '@middleware'
+import { authorize, requestHandler, errorHandler, notFoundHandler } from '@middleware'
+
+
 
 const app = express()
 app.use(express.json())
@@ -26,10 +27,10 @@ app.use("/usuario/:id", authorize, usuarioProxy);
 app.use('/receita/:id', authorize, receitaProxy);
 app.use('/receitas', authorize, receitaProxy);
 
-app.use(notFoundHandler);
-app.use(errorHandler);
-app.use(requestHandler);
 
+app.use(requestHandler);
+app.use(errorHandler);
+app.use(notFoundHandler);
 
 
 export default app;
