@@ -1,0 +1,53 @@
+{
+   "compilerOptions": {
+      "lib": [
+         "ESNext"
+      ],
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "pretty": true,
+      "sourceMap": true,
+      "target": "ESNext",
+      "outDir": "./dist",
+      "rootDir": "./src",
+      "strict": true,
+      "skipLibCheck": true,
+      "strictPropertyInitialization": false,
+      "esModuleInterop": true,
+      "forceConsistentCasingInFileNames": true,
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "removeComments": true,
+      "allowSyntheticDefaultImports": true,
+      "baseUrl": ".",
+      "paths": {
+         "@env": [
+            "./src/env/index.ts"
+         ],
+         "@middleware": [
+            "./src/middleware/index.ts"
+         ],
+         "@error": [
+            "./src/error/index.ts"
+         ],
+         "@usuario": [
+            "./src/usuario/index.ts"
+         ],
+         "@http": [
+            "./src/http/index.ts"
+         ],
+         "@controladores": [
+            "src/controladores/index.ts"
+         ],
+         "@database": [
+            "./src/database/index.ts"
+         ],
+         "@controlerFactories": [
+            "./src/controladoresFactories/index.ts"
+         ],
+         "@providers": [
+            "./src/providers/index.ts"
+         ]
+      }
+   }
+}
