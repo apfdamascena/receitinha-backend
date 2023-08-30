@@ -23,9 +23,6 @@ const receitaProxy = httpProxy('http://localhost:3004/', {
 app.use('/receita/:id', authorize, receitaProxy);
 app.use('/receitas', authorize, receitaProxy);
 
-app.use(notFoundHandler);
-app.use(errorHandler);
-app.use(requestHandler);
 
 
 
